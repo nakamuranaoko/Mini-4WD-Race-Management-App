@@ -1,4 +1,4 @@
-# mini-4WD-race-Manament
+# Mini-4WD-Race-Management-App
 
 ## ■サービス概要
 
