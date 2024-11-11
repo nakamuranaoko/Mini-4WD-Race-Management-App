@@ -53,4 +53,4 @@ Xへのシェア機能については、Twitter APIを使用して実装予定�
 Figma：https://www.figma.com/design/dCZNOJpsVYMOuPhrJgf0yM/%E5%8D%92%E6%A5%AD%E5%88%B6%E4%BD%9C?node-id=0-1&node-type=canvas&t=dB7fdXARB0goWz3D-0
 
 ### ER図
-[![Image from Gyazo](https://i.gyazo.com/2315eb866b75bd2fa29a74a9c2ea9072.png)](https://gyazo.com/2315eb866b75bd2fa29a74a9c2ea9072)
+[![Image from Gyazo](https://i.gyazo.com/14f74ac8d68986194d97acb163646b93.png)](https://gyazo.com/14f74ac8d68986194d97acb163646b93)
