@@ -2,7 +2,7 @@
 
 ## ■サービス概要
 
-1,ミニ四駆のレース大会記録アプリです。
+1,ミニ四駆のレース大会、イベントの記録アプリです。
 
 2,大会の日付、コース、タイム、使用マシンの情報を記録します。
 
@@ -51,3 +51,6 @@ Xへのシェア機能については、Twitter APIを使用して実装予定�
 
 ### 画面遷移図
 Figma：https://www.figma.com/design/dCZNOJpsVYMOuPhrJgf0yM/%E5%8D%92%E6%A5%AD%E5%88%B6%E4%BD%9C?node-id=0-1&node-type=canvas&t=dB7fdXARB0goWz3D-0
+
+### ER図
+[![Image from Gyazo](https://i.gyazo.com/14f74ac8d68986194d97acb163646b93.png)](https://gyazo.com/14f74ac8d68986194d97acb163646b93)
