@@ -6,16 +6,30 @@
   </div>
 </div>
 
-<h1>ログインアプリ</h1>
+<div class="my-10 text-center">
+  <h1 class="text-2xl font-bold mb-4">ログインアプリ</h1>
 
-<% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
-  <!-- ユーザーがログインしていた時の処理 -->
-
-  <h4> メールアドレス： <%= current_user.email %> </h4>
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
-<% else %>
-  <!-- ユーザーがログインしていなかった時の処理 -->
-  <h2> 現在ログインしていません </h2>
-  <%= link_to "ログイン", new_user_session_path, class: 'post' %> <!-- ログイン画面に移行する -->
-  <%= link_to "新規登録", new_user_registration_path, class: 'post' %> <!-- 新規登録画面に移行する -->
-<% end %>
+  <% if user_signed_in? %>
+    <!-- ユーザーがログインしている場合 -->
+    <div class="card w-full max-w-sm shadow-lg bg-base-100 mx-auto">
+      <div class="card-body">
+        <h4 class="text-lg font-semibold">メールアドレス:</h4>
+        <p class="text-gray-600"><%= current_user.email %></p>
+        <div class="card-actions justify-center">
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-error btn-outline" %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <!-- ユーザーがログインしていない場合 -->
+    <div class="card w-full max-w-sm shadow-lg bg-base-100 mx-auto">
+      <div class="card-body">
+        <h2 class="text-lg font-semibold mb-4">現在ログインしていません</h2>
+        <div class="card-actions flex flex-col gap-2">
+          <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
+          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-secondary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
