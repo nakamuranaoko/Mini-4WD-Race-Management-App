@@ -14,7 +14,26 @@
     <%= render 'shared/header' %>
 
     <!-- メインコンテンツ -->
-    <%= yield %>
+    <main>
+      <!-- タイトル -->
+      <h1 class="text-center text-3xl font-bold my-4">Mini 4WD Race Management App</h1>
+
+      <!-- フラッシュメッセージ -->
+      <div class="flash-messages mx-auto max-w-screen-md my-4">
+        <% if notice.present? %>
+          <div class="alert alert-success">
+            <p><%= notice %></p>
+          </div>
+        <% end %>
+        <% if alert.present? %>
+          <div class="alert alert-error">
+            <p><%= alert %></p>
+          </div>
+        <% end %>
+      </div>
+
+      <%= yield %>
+    </main>
 
     <!-- フッター -->
     <%= render 'shared/footer' %>
