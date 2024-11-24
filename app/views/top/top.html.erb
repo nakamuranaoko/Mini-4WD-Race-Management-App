@@ -16,7 +16,7 @@
         <h4 class="text-lg font-semibold">メールアドレス:</h4>
         <p class="text-gray-600"><%= current_user.email %></p>
         <div class="card-actions justify-center">
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-error btn-outline" %>
+          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-error btn-outline" %>
         </div>
       </div>
     </div>
