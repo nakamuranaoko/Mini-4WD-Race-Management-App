@@ -6,4 +6,5 @@ class Event < ApplicationRecord
   validates :coment, presence: true, length: { maximum: 65_535 }
 
   belongs_to :user # EventモデルがUserモデルに属している
+  has_many :coruse_photos, dependent: :destroy # コース写真との関連
 end
