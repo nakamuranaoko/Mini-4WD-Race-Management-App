@@ -7,4 +7,5 @@ class Event < ApplicationRecord
 
   belongs_to :user # EventモデルがUserモデルに属している
   has_many :coruse_photos, dependent: :destroy # コース写真との関連
+  has_many :race_times, dependent: :destroy # レースタイムとの関連
 end
