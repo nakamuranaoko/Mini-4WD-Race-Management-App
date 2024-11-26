@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "top#top" # 仮トップページ
   get "top/top"
+  resources :events, only: %i[index]
 end
