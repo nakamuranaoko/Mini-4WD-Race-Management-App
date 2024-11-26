@@ -22,7 +22,7 @@ user = User.create!(
     date: Date.today - i,
     event_name: "大会 #{i + 1}",
     venue: "会場 #{i + 1}",
-    weather: ["晴れ", "曇り", "雨"].sample,
+    weather: [ "晴れ", "曇り", "雨" ].sample,
     temperature: rand(15..30),
     coment: "大会 #{i + 1} のコメントです。",
     user: user
@@ -36,13 +36,13 @@ user = User.create!(
     )
   end
 
-#   # 写真データを作成
-#   3.times do
-#     CorusePhoto.create!(
-#       image_url: "https://via.placeholder.com/300", # プレースホルダー画像
-#       event: event
-#     )
-#   end
+  #   # 写真データを作成
+  #   3.times do
+  #     CorusePhoto.create!(
+  #       image_url: "https://via.placeholder.com/300", # プレースホルダー画像
+  #       event: event
+  #     )
+  #   end
 end
 
 puts "ダミーデータの作成が完了しました！"

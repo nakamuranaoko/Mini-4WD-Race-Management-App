@@ -7,7 +7,7 @@ class CreateEvents < ActiveRecord::Migration[7.2]
       t.string :event_name, null: false
       t.string :venue, null: false
       t.string :coment
-      t.references :user, foreign_key: true #外部キーとしてUserモデルと関連
+      t.references :user, foreign_key: true # 外部キーとしてUserモデルと関連
       t.timestamps
     end
   end
