@@ -15,8 +15,8 @@
       <div class="card-body">
         <h4 class="text-lg font-semibold">メールアドレス:</h4>
         <p class="text-gray-600"><%= current_user.email %></p>
-        <div class="card-actions justify-center">
-          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-error btn-outline" %>
+        <div class="card-actions flex justify-center">
+          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-error btn-outline w-full" %>
         </div>
       </div>
     </div>
@@ -25,9 +25,9 @@
     <div class="card w-full max-w-sm shadow-lg bg-base-100 mx-auto">
       <div class="card-body">
         <h2 class="text-lg font-semibold mb-4">現在ログインしていません</h2>
-        <div class="card-actions flex flex-col gap-2">
-          <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
-          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-secondary" %>
+        <div class="card-actions flex flex-col gap-2 items-center">
+          <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary w-full" %>
+          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-secondary w-full" %>
         </div>
       </div>
     </div>
