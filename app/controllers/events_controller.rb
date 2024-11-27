@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user! # ログインを確認し、未ログインの場合は自動的にログインページへリダイレクトする
+    # ログインを確認し、未ログインの場合は自動的にログインページへリダイレクトする
+    before_action :authenticate_user!, only: %i[new create show] 
+    
 
   # レース一覧
   def index
