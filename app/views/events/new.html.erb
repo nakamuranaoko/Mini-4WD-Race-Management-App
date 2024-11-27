@@ -10,6 +10,18 @@
         <%= f.label :date, "日付", class: "label font-bold" %>
         <%= f.date_field :date, class: "input input-bordered" %>
       </div>
+
+      <!-- 天気 -->
+      <div class="form-control">
+        <%= f.label :weather, "天気", class: "label font-bold" %>
+        <%= f.text_field :weather, class: "input input-bordered" %>
+      </div>
+
+      <!-- 気温 -->
+      <div class="form-control">
+        <%= f.label :temperature, "気温", class: "label font-bold" %>
+        <%= f.text_field :temperature, class: "input input-bordered" %>
+      </div>
       
       <!-- 大会名 -->
       <div class="form-control">
@@ -23,18 +35,21 @@
         <%= f.text_field :venue, class: "input input-bordered" %>
       </div>
       
-      <!-- タイム1 -->
+      <!-- ネストされたフォーム -->
+      <h3>ラップタイム</h3>
+      <%= f.fields_for :race_times do |race_time_form| %>
+        <div class="form-control">
+          <%= race_time_form.label :rap_time, "タイム", class: "label font-bold" %>
+          <%= race_time_form.text_field :rap_time, class: "input input-bordered" %>
+        </div>
+      <% end %>
+
+      <!-- コメント -->
       <div class="form-control">
-        <%= f.label :rap_time_1, "タイム1 (秒)", class: "label font-bold" %>
-        <%= f.number_field :rap_time_1, class: "input input-bordered", step: "0.01", placeholder: "例: 12.34" %>
+        <%= f.label :coment, "コメント", class: "label font-bold" %>
+        <%= f.text_area :coment, class: "input input-bordered" %>
       </div>
-      
-      <!-- タイム2 -->
-      <div class="form-control">
-        <%= f.label :rap_time_2, "タイム2 (秒)", class: "label font-bold" %>
-        <%= f.number_field :rap_time_2, class: "input input-bordered", step: "0.01", placeholder: "例: 15.67" %>
-      </div>
-      
+
       <!-- 送信ボタン -->
       <div class="form-control mt-4">
         <%= f.submit "送信", class: "btn btn-primary" %>

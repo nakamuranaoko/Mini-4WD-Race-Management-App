@@ -1,0 +1,14 @@
+<!-- app/views/events/show.html.erb -->
+<h1><%= @event.event_name %></h1>
+<p>日付: <%= @event.date %></p>
+<p>天気: <%= @event.weather %></p>
+<p>温度: <%= @event.temperature %>℃</p>
+<p>会場: <%= @event.venue %></p>
+<p>コメント: <%= @event.coment %></p>
+
+<h2>ラップタイム</h2>
+<ul>
+  <% @event.race_times.each do |time| %>
+    <li>ラップタイム: <%= time.rap_time %> 秒</li>
+  <% end %>
+</ul>
