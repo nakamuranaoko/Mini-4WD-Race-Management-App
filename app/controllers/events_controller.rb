@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
     # ログインを確認し、未ログインの場合は自動的にログインページへリダイレクトする
-    before_action :authenticate_user!, only: %i[new create show] 
-    
+    before_action :authenticate_user!, only: %i[new create show]
+
 
   # レース一覧
   def index
@@ -17,16 +17,16 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
   end
-  
+
 
   def create
     @event = Event.new(event_params)
     @event.user = current_user # ログインユーザーを関連付け
 
     if @event.save
-      redirect_to @event, notice: "イベントが作成されました。" 
+      redirect_to @event, notice: "イベントが作成されました。"
     else
-    #   Rails.logger.debug @event.errors.full_messages # エラー内容をログに出力
+      #   Rails.logger.debug @event.errors.full_messages # エラー内容をログに出力
       render :new, status: :unprocessable_entity
     end
   end
@@ -34,6 +34,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:date, :event_name, :venue, :weather, :temperature, :coment, race_times_attributes: [:rap_time])
+    params.require(:event).permit(:date, :event_name, :venue, :weather, :temperature, :coment, race_times_attributes: [ :rap_time ])
   end
 end
