@@ -2,6 +2,7 @@ class Machine < ApplicationRecord
   belongs_to :event # イベントとの関連付け
   has_many :gimmicks, dependent: :destroy # ギミックとの関連付け
   has_many :brakes, dependent: :destroy # ブレーキとの関連付け
+  has_many :mass_dampers, dependent: :destroy # マスダンパーとの関連付け
 
   validates :machine_name, 
   validates :tire_diameter, numericality: { greater_than: 0 }, allow_nil: true

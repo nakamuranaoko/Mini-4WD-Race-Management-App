@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_29_055139) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_29_065716) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_29_055139) do
     t.index ["event_id"], name: "index_machines_on_event_id"
   end
 
+  create_table "mass_dampers", force: :cascade do |t|
+    t.bigint "machine_id", null: false
+    t.integer "name"
+    t.float "weight"
+    t.integer "count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["machine_id"], name: "index_mass_dampers_on_machine_id"
+  end
+
   create_table "race_times", force: :cascade do |t|
     t.float "rap_time"
     t.bigint "event_id"
@@ -110,6 +120,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_29_055139) do
   add_foreign_key "events", "users"
   add_foreign_key "gimmicks", "machines"
   add_foreign_key "machines", "events"
+  add_foreign_key "mass_dampers", "machines"
   add_foreign_key "race_times", "events"
   add_foreign_key "rollers", "gimmicks"
 end
