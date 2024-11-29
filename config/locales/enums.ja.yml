@@ -48,3 +48,12 @@ ja:
           s1: "S1"
           tz: "TZ"
           tzx: "TZX"
+      brake:
+        color:
+          green: "緑"
+          blue: "青"
+          black: "黒"
+          gray: "グレー"
+          white: "白"
+          pink: "ピンク"
+          none: "なし"

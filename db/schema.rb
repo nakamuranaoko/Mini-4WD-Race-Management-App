@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_29_014719) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_29_055139) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "breakes", force: :cascade do |t|
+    t.bigint "machine_id", null: false
+    t.integer "name"
+    t.integer "color"
+    t.float "thickness"
+    t.float "length"
+    t.float "width"
+    t.float "position"
+    t.float "tamite"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["machine_id"], name: "index_breakes_on_machine_id"
+  end
 
   create_table "coruse_photos", force: :cascade do |t|
     t.string "image_url"
@@ -91,6 +105,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_29_014719) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "breakes", "machines"
   add_foreign_key "coruse_photos", "events"
   add_foreign_key "events", "users"
   add_foreign_key "gimmicks", "machines"
