@@ -5,7 +5,7 @@ class CreateRollers < ActiveRecord::Migration[7.2]
       t.integer :position # ローラーの位置 (Enum)
       t.float :value # ローラーの直径 (mm)
       t.string :material # ローラーの素材 (例: アルミ、ステンレス、銅)
-      
+
       t.timestamps
     end
   end

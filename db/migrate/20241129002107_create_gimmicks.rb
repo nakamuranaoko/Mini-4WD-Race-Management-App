@@ -4,7 +4,7 @@ class CreateGimmicks < ActiveRecord::Migration[7.2]
       t.references :machine, null: false, foreign_key: true # Machines テーブルの外部キー
       t.string :name # ギミックの名前
       t.integer :gimmick_type # ギミックの種類（フロント、サイド、リア）
-      
+
       t.timestamps
     end
   end
