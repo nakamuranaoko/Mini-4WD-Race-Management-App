@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_29_002107) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_29_014719) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,6 +68,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_29_002107) do
     t.index ["event_id"], name: "index_race_times_on_event_id"
   end
 
+  create_table "rollers", force: :cascade do |t|
+    t.bigint "gimmick_id", null: false
+    t.integer "position"
+    t.float "value"
+    t.string "material"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gimmick_id"], name: "index_rollers_on_gimmick_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -86,4 +96,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_29_002107) do
   add_foreign_key "gimmicks", "machines"
   add_foreign_key "machines", "events"
   add_foreign_key "race_times", "events"
+  add_foreign_key "rollers", "gimmicks"
 end
