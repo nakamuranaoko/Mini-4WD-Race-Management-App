@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_28_024303) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_29_002107) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_28_024303) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "gimmicks", force: :cascade do |t|
+    t.bigint "machine_id", null: false
+    t.string "name"
+    t.integer "gimmick_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["machine_id"], name: "index_gimmicks_on_machine_id"
   end
 
   create_table "machines", force: :cascade do |t|
@@ -74,6 +83,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_28_024303) do
 
   add_foreign_key "coruse_photos", "events"
   add_foreign_key "events", "users"
+  add_foreign_key "gimmicks", "machines"
   add_foreign_key "machines", "events"
   add_foreign_key "race_times", "events"
 end
