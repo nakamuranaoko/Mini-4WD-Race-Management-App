@@ -69,6 +69,10 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      # Bootsnapキャッシュをクリアするタスクを追加
+      - name: Clear bootsnap cache
+        run: rm -rf tmp/cache
+
       - name: Run tests
         env:
           RAILS_ENV: test
