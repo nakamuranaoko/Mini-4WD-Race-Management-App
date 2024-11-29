@@ -1,7 +1,7 @@
 require_relative "boot"
 
 require "rails/all"
-# require 'bootsnap/setup' # Speed up boot time by caching expensive operations.
+# require 'bootsnap/setup'  # Speed up boot time by caching expensive operations.
 
 
 # Require the gems listed in Gemfile, including any gems
