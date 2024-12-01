@@ -28,7 +28,7 @@ ja:
           ratio_6_4_1: "6.4:1"
           ratio_8_75_1: "8.75:1"
           ratio_11_2_1: "11.2:1"
-        chassis:
+        frame:
           ms: "MS"             
           ma: "MA"            
           fma: "FMA"            

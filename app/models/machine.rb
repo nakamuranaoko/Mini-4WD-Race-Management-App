@@ -1,9 +1,11 @@
 class Machine < ApplicationRecord
   belongs_to :event # イベントとの関連付け
   has_many :gimmicks, dependent: :destroy # ギミックとの関連付け
+  accepts_nested_attributes_for :gimmicks, allow_destroy: true
   has_many :breakes, dependent: :destroy # ブレーキとの関連付け
   has_many :mass_dampers, dependent: :destroy # マスダンパーとの関連付け
   has_many :machine_photos, dependent: :destroy # マシーン写真との関連付け
+  validates :event, presence: true
 
 
   # モーターの選択肢
@@ -17,7 +19,12 @@ class Machine < ApplicationRecord
   }
 
   # シャーシの選択肢
-  enum chassis: {
-    ms: 0, ma: 1, fma: 2, s2: 3, vs: 4, vz: 5, x: 6, xx: 7, type1: 8, type2: 9, type3: 10, type4: 11, type5: 12, zero: 13, fm: 14, sfm: 15, s1: 16, tz: 17, tzx: 18
+  enum frame: {
+    ms: 0, ma: 1, fma: 2, s2: 3, vs: 4, vz: 5, 
+    x: 6, xx: 7, type1: 8, type2: 9, type3: 10, 
+    type4: 11, type5: 12, zero: 13, fm: 14, sfm: 15, 
+    s1: 16, tz: 17, tzx: 18
   }
+  
+
 end

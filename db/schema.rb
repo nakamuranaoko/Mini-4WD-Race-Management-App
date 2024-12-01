@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_30_130458) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_01_024353) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,7 +71,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_30_130458) do
     t.string "machine_name"
     t.integer "motor"
     t.integer "gear_ratio"
-    t.integer "chassis"
+    t.integer "frame", default: 0
     t.float "tire_diameter"
     t.string "tire_type"
     t.float "voltage"

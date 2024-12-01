@@ -23,6 +23,7 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.events.build(event_params)
+    Rails.logger.debug @event.inspect # デバッグ用にイベントオブジェクトを表示
     if @event.save
       redirect_to @event, notice: 'イベントが作成されました！'
     else
@@ -47,11 +48,11 @@ class EventsController < ApplicationController
   # ストロングパラメーター
   def event_params
     params.require(:event).permit(
-      :date, :event_name, :venue, :weather, :temperature, :coment,
+      :date, :event_name, :venue, :weather, :temperature, :comment,
       course_photos_attributes: [:image],
       race_times_attributes: [:id, :lap_time, :course_length, :_destroy],
       machines_attributes: [
-        :id, :name, :chassis, :motor, :gear_ratio,
+        :id, :name, :frame, :motor, :gear_ratio,
         machine_photos_attributes: [:id, :image, :_destroy],
         gimmicks_attributes: [
           :id, :gimmick_type, 
