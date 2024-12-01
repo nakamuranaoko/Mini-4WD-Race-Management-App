@@ -38,6 +38,10 @@
         <%= rt.label :rap_time, "ラップタイム", class: "label-text" %>
         <%= rt.number_field :rap_time, step: 0.001, required: true, class: "input input-bordered" %>
       </div>
+      <div class="form-control mb-4">
+        <%= rt.label :course_length, "コース全長", class: "label-text" %>
+        <%= rt.number_field :course_length, step: 0.1, required: true, class: "input input-bordered" %>
+      </div>
     <% end %>
     
     <h3 class="text-xl font-semibold mt-6 mb-4">マシン情報</h3>
@@ -76,6 +80,21 @@
         <%= machine.text_field :tire_type, class: "input input-bordered" %>
       </div>
 
+      <div class="form-control mb-4">
+        <%= machine.label :voltage, "電圧 (V)", class: "label-text" %>
+        <%= machine.number_field :voltage, step: 0.1, class: "input input-bordered" %>
+      </div>
+
+      <div class="form-control mb-4">
+        <%= machine.label :speed, "時速 (km/h)", class: "label-text" %>
+        <%= machine.number_field :speed, step: 0.1, class: "input input-bordered" %>
+      </div>
+
+      <div class="form-control mb-4">
+        <%= machine.label :other_comments, "メモ", class: "label-text" %>
+        <%= machine.text_area :other_comments, rows: 3, class: "textarea textarea-bordered" %>
+      </div>
+
     <h3 class="text-xl font-semibold mt-6 mb-4">コース写真</h3>
     <%= f.fields_for :course_photos do |photo| %>
       <div class="form-control mb-4">
@@ -88,14 +107,15 @@
       <%= machine.label :body, "ボディ", class: "label-text" %>
       <%= machine.text_area :body, class: "input input-bordered" %>
     </div>
-    
+    <!--
       <!-- ギミック情報 -->
-      <%= machine.fields_for :gimmicks do |gimmick_form| %>
+      <% machine.fields_for :gimmicks do |gimmick_form| %>
         <div class="form-control mb-4">
           <%= gimmick_form.label :name, "フロントギミック", class: "label-text" %>
           <%= gimmick_form.text_field :name, class: "input input-bordered" %>
           <%= gimmick_form.hidden_field :gimmick_type, value: Gimmick.gimmick_types[:front] %> <!-- 必要ならtypeを指定 -->
         </div>
+    -->
       <% end %>      
     <% end %>
     

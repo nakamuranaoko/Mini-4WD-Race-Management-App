@@ -48,11 +48,11 @@ class EventsController < ApplicationController
   # ストロングパラメーター
   def event_params
     params.require(:event).permit(
-      :date, :event_name, :venue, :weather, :temperature, :comment,
+      :date, :event_name, :venue, :weather, :temperature, :coment,
       course_photos_attributes: [:image],
-      race_times_attributes: [:id, :lap_time, :course_length, :_destroy],
+      race_times_attributes: [:id, :rap_time, :course_length, :_destroy],
       machines_attributes: [
-        :id, :name, :frame, :motor, :gear_ratio,
+        :id, :machine_name, :frame, :motor, :gear_ratio,:tire_diameter,:tire_type,:voltage,:speed,:other_comments,:body,
         machine_photos_attributes: [:id, :image, :_destroy],
         gimmicks_attributes: [
           :id, :gimmick_type, 
