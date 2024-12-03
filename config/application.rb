@@ -20,6 +20,7 @@ module Myapp
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
     # config.autoload_paths += %W(#{config.root}/lib)
+    config.action_controller.raise_on_missing_callback_actions = true
 
     # Configuration for the application, engines, and railties goes here.
     #
