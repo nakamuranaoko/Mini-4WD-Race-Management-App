@@ -32,5 +32,8 @@
   </div>
 <% end %>
 
-
+<% if @event.user == current_user %>
+  <%= link_to '編集', edit_event_path(@event), class: 'btn btn-primary' %>
+  <%= link_to '削除', event_path(@event), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+<% end %>
 <%= link_to "戻る", events_path, class: "btn btn-outline mt-6" %>
