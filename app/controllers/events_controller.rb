@@ -11,7 +11,9 @@ class EventsController < ApplicationController
 
   # レース一覧
   def index
-    @events = Event.includes(:user, :race_times).order(date: :desc)
+    @events = Event.all
+    @events = Event.includes(:user, :race_times)
+                 .order(date: :desc, event_name: :asc, 'race_times.rap_time': :asc)
   end
 
 
