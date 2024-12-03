@@ -1,0 +1,43 @@
+<!-- イベント結果一覧 -->
+<div class="overflow-x-auto">
+  <table class="table w-full">
+    <thead>
+      <tr>
+        <th>日付</th>
+        <th>大会名</th>
+        <th>会場名</th>
+        <th>タイム</th>
+        <th>ユーザー名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <!-- 日付 -->
+          <td><%= link_to event.date.strftime("%Y/%m/%d"), event_path(event), class: "text-blue-500 underline" %></td>
+            
+          <!-- 大会名 -->
+          <td><%= link_to event.event_name, event_path(event), class: "text-blue-500 underline" %></td>
+            
+          <!-- 会場名 -->
+          <td><%= event.venue %></td>
+            
+          <!-- タイム -->
+          <td>
+            <% if event.race_times.present? %>
+              <% event.race_times.each do |race_time| %>
+                <div><%= number_to_human(race_time.rap_time, precision: 2) %>/s</div>
+              <% end %>
+            <% else %>
+              <span class="text-gray-500">未登録</span>
+            <% end %>
+          </td>
+
+          <!-- ユーザー名 -->
+          <td><%= event.user.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

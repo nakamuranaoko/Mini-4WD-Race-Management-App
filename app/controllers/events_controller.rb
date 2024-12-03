@@ -9,11 +9,16 @@ class EventsController < ApplicationController
     build_associations
   end
 
-  # レース一覧
+  # 全員レース一覧
   def index
     @events = Event.all
     @events = Event.includes(:user, :race_times)
                  .order(date: :desc, event_name: :asc, 'race_times.rap_time': :asc)
+  end
+
+  # ログインユーザーだけのレース一覧
+  def user_index
+    @events = current_user.events.includes(:race_times).order(date: :desc, event_name: :asc, 'race_times.rap_time': :asc) # ログインユーザーのイベントのみ取得
   end
 
 

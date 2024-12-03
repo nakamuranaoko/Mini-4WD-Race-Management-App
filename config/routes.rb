@@ -14,5 +14,9 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "top#top" # 仮トップページ
   get "top/top"
-  resources :events, only: %i[index new create show] # 掲示板の一覧表示と新規作成画面への設定
+  resources :events, only: %i[index new create show] do # 掲示板の一覧表示と新規作成画面への設定
+    collection do
+      get "user_index" # ログインユーザー専用のレース一覧ページ
+    end
+  end
 end
