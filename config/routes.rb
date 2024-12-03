@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get "top/top"
   resources :events, only: %i[index new create show] do # 掲示板の一覧表示と新規作成画面への設定
     collection do
-      get 'user_index' # ログインユーザー専用のレース一覧ページ
+      get "user_index" # ログインユーザー専用のレース一覧ページ
     end
   end
 end
