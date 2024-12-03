@@ -1,14 +1,36 @@
 <!-- app/views/events/show.html.erb -->
-<h1><%= @event.event_name %></h1>
-<p>日付: <%= @event.date %></p>
-<p>天気: <%= @event.weather %></p>
-<p>温度: <%= @event.temperature %>℃</p>
-<p>会場: <%= @event.venue %></p>
-<p>コメント: <%= @event.coment %></p>
+<h1 class="text-3xl font-bold mb-4"><%= @event.event_name %></h1>
 
-<h2>ラップタイム</h2>
+<div class="mb-6">
+  <p>日付: <%= @event.date %></p>
+  <p>天気: <%= @event.weather %></p>
+  <p>気温: <%= @event.temperature %>℃</p>
+  <p>会場: <%= @event.venue %></p>
+  <p>コメント: <%= @event.coment %></p>
+</div>
+
+<h2 class="text-2xl font-semibold mb-4">ラップタイム</h2>
 <ul>
   <% @event.race_times.each do |time| %>
-    <li>ラップタイム: <%= time.rap_time %> 秒</li>
+    <li>ラップタイム: <%= time.rap_time %> /s (コース全長: <%= time.course_length %> m)</li>
   <% end %>
 </ul>
+
+<h2 class="text-2xl font-semibold mt-6 mb-4">マシン情報</h2>
+<% @event.machines.each do |machine| %>
+  <div class="mb-6 border p-4 rounded-lg">
+    <h3 class="text-xl font-semibold">マシン名: <%= machine.machine_name %></h3>
+    <p>モーター: <%= I18n.t("activerecord.attributes.machine.motor.#{machine.motor}") %></p>
+    <p>ギア比: <%= I18n.t("activerecord.attributes.machine.gear_ratio.#{machine.gear_ratio}") %></p>
+    <p>シャーシ: <%= I18n.t("activerecord.attributes.machine.frame.#{machine.frame}") %></p>
+    <p>タイヤ径: <%= machine.tire_diameter %> mm</p>
+    <p>タイヤ種: <%= machine.tire_type %></p>
+    <p>電圧: <%= machine.voltage %> V</p>
+    <p>時速: <%= machine.speed %> km/h</p>
+    <p>メモ: <%= machine.other_comments %></p>
+
+  </div>
+<% end %>
+
+
+<%= link_to "戻る", events_path, class: "btn btn-outline mt-6" %>

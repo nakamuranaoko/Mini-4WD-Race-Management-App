@@ -94,7 +94,8 @@
         <%= machine.label :other_comments, "メモ", class: "label-text" %>
         <%= machine.text_area :other_comments, rows: 3, class: "textarea textarea-bordered" %>
       </div>
-
+<!--
+ 
     <h3 class="text-xl font-semibold mt-6 mb-4">コース写真</h3>
     <%= f.fields_for :course_photos do |photo| %>
       <div class="form-control mb-4">
@@ -102,7 +103,7 @@
         <%= photo.file_field :image, class: "file-input file-input-bordered" %>
       </div>
     <% end %>
-
+-->
     <div class="form-control mb-4">
       <%= machine.label :body, "ボディ", class: "label-text" %>
       <%= machine.text_area :body, class: "input input-bordered" %>

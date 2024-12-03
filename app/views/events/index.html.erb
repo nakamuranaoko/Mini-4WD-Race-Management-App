@@ -29,7 +29,7 @@
             <td>
               <% if event.race_times.present? %>
                 <% event.race_times.each do |race_time| %>
-                  <div><%= number_to_human(race_time.rap_time, precision: 2) %>秒</div>
+                  <div><%= number_to_human(race_time.rap_time, precision: 2) %>/s</div>
                 <% end %>
               <% else %>
                 <span class="text-gray-500">未登録</span>
