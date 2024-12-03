@@ -48,7 +48,7 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      redirect_to @event, notice: 'イベントが更新されました。'
+      redirect_to @event, notice: "イベントが更新されました。"
     else
       render :edit
     end
