@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
     # ログインを確認し、未ログインの場合は自動的にログインページへリダイレクトする
-    before_action :authenticate_user!, only: %i[new create show]
+    before_action :authenticate_user!, only: %i[new create show edit update destroy]
+    before_action :set_event, only: %i[show edit update destroy]
+    before_action :authorize_user!, only: %i[edit update destroy]
 
 
   # レース記録作成
@@ -39,6 +41,29 @@ class EventsController < ApplicationController
     end
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to @event, notice: 'イベントが更新されました。'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    if @event.destroy
+      flash[:notice] = "イベントを削除しました。"
+      redirect_to events_path
+    else
+      flash[:alert] = "削除に失敗しました。"
+      redirect_to event_path(@event)
+    end
+  end
+
   private
 
   # 必要な関連データを構築
@@ -69,5 +94,16 @@ class EventsController < ApplicationController
         mass_dampers_attributes: [ :id, :name, :_destroy ]
       ]
     )
+  end
+
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  def authorize_user!
+    unless @event.user == current_user
+      flash[:alert] = "編集権限がありません。"
+      redirect_to events_path
+    end
   end
 end
