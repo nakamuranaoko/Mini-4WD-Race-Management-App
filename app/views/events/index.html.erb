@@ -17,10 +17,10 @@
         <% @events.each do |event| %>
           <tr>
             <!-- 日付 -->
-            <td><%= event.date.strftime("%Y/%m/%d") %></td>
+            <td><%= link_to event.date.strftime("%Y/%m/%d"), event_path(event), class: "text-blue-500 underline" %></td>
             
             <!-- 大会名 -->
-            <td><%= event.event_name %></td>
+            <td><%= link_to event.event_name, event_path(event), class: "text-blue-500 underline" %></td>
             
             <!-- 会場名 -->
             <td><%= event.venue %></td>
