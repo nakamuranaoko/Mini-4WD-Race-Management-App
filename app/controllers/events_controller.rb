@@ -3,7 +3,7 @@ class EventsController < ApplicationController
     before_action :authenticate_user!, only: %i[new create show]
 
 
-    # レース記録作成
+  # レース記録作成
   def new
     @event = Event.new
     build_associations
@@ -14,7 +14,7 @@ class EventsController < ApplicationController
     @events = Event.includes(:user, :race_times).order(date: :desc)
   end
 
-  
+
 
   def show
     @event = Event.find(params[:id])
@@ -25,7 +25,7 @@ class EventsController < ApplicationController
     @event = current_user.events.build(event_params)
     Rails.logger.debug @event.inspect # デバッグ用にイベントオブジェクトを表示
     if @event.save
-      redirect_to @event, notice: 'イベントが作成されました！'
+      redirect_to @event, notice: "イベントが作成されました！"
     else
       build_associations # 保存に失敗した場合でも関連データが表示されるように再構築
       render :new, status: :unprocessable_entity
@@ -49,17 +49,17 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(
       :date, :event_name, :venue, :weather, :temperature, :coment,
-      course_photos_attributes: [:image],
-      race_times_attributes: [:id, :rap_time, :course_length, :_destroy],
+      course_photos_attributes: [ :image ],
+      race_times_attributes: [ :id, :rap_time, :course_length, :_destroy ],
       machines_attributes: [
-        :id, :machine_name, :frame, :motor, :gear_ratio,:tire_diameter,:tire_type,:voltage,:speed,:other_comments,:body,
-        machine_photos_attributes: [:id, :image, :_destroy],
+        :id, :machine_name, :frame, :motor, :gear_ratio, :tire_diameter, :tire_type, :voltage, :speed, :other_comments, :body,
+        machine_photos_attributes: [ :id, :image, :_destroy ],
         gimmicks_attributes: [
-          :id, :gimmick_type, 
-          rollers_attributes: [:id, :position, :material, :_destroy]
+          :id, :gimmick_type,
+          rollers_attributes: [ :id, :position, :material, :_destroy ]
         ],
-        brakes_attributes: [:id, :name, :color, :_destroy],
-        mass_dampers_attributes: [:id, :name, :_destroy]
+        brakes_attributes: [ :id, :name, :color, :_destroy ],
+        mass_dampers_attributes: [ :id, :name, :_destroy ]
       ]
     )
   end

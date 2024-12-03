@@ -20,11 +20,9 @@ class Machine < ApplicationRecord
 
   # シャーシの選択肢
   enum frame: {
-    ms: 0, ma: 1, fma: 2, s2: 3, vs: 4, vz: 5, 
-    x: 6, xx: 7, type1: 8, type2: 9, type3: 10, 
-    type4: 11, type5: 12, zero: 13, fm: 14, sfm: 15, 
+    ms: 0, ma: 1, fma: 2, s2: 3, vs: 4, vz: 5,
+    x: 6, xx: 7, type1: 8, type2: 9, type3: 10,
+    type4: 11, type5: 12, zero: 13, fm: 14, sfm: 15,
     s1: 16, tz: 17, tzx: 18
   }
-  
-
 end
