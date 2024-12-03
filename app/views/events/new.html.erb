@@ -1,60 +1,126 @@
-<div class="container mx-auto max-w-4xl py-8">
-  <div class="text-center">
-    <h1 class="text-2xl font-bold mb-6">レース記録を入力</h1>
-  </div>
-  <div class="card shadow-lg bg-base-100 p-6">
-    <%= form_with model: @event, class: "form-control gap-4" do |f| %>
-      
-      <!-- 日付 -->
-      <div class="form-control">
-        <%= f.label :date, "日付", class: "label font-bold" %>
-        <%= f.date_field :date, class: "input input-bordered" %>
+<%= form_with(model: @event, local: true) do |f| %>
+    <h2 class="text-2xl font-semibold mb-4">イベント情報</h2>
+    
+    <!-- イベントの日付、名前、会場、天気、気温、コメント -->
+    <div class="form-control mb-4">
+      <%= f.label :date, "大会・イベント日", class: "label-text" %>
+      <%= f.date_field :date, required: true, class: "input input-bordered" %>
+    </div>
+    
+    <div class="form-control mb-4">
+      <%= f.label :event_name, "大会・イベント名", class: "label-text" %>
+      <%= f.text_field :event_name, required: true, class: "input input-bordered" %>
+    </div>
+    
+    <div class="form-control mb-4">
+      <%= f.label :venue, "会場・店舗名", class: "label-text" %>
+      <%= f.text_field :venue, required: true, class: "input input-bordered" %>
+    </div>
+    
+    <div class="form-control mb-4">
+      <%= f.label :weather, "天気", class: "label-text" %>
+      <%= f.text_field :weather, class: "input input-bordered" %>
+    </div>
+    
+    <div class="form-control mb-4">
+      <%= f.label :temperature, "気温", class: "label-text" %>
+      <%= f.number_field :temperature, step: 0.1, class: "input input-bordered" %>
+    </div>
+    
+    <div class="form-control mb-4">
+      <%= f.label :coment, "コメント", class: "label-text" %>
+      <%= f.text_area :coment, class: "textarea textarea-bordered" %>
+    </div>
+    
+    <h3 class="text-xl font-semibold mt-6 mb-4">ラップタイム</h3>
+    <%= f.fields_for :race_times do |rt| %>
+      <div class="form-control mb-4">
+        <%= rt.label :rap_time, "ラップタイム", class: "label-text" %>
+        <%= rt.number_field :rap_time, step: 0.001, required: true, class: "input input-bordered" %>
       </div>
-
-      <!-- 天気 -->
-      <div class="form-control">
-        <%= f.label :weather, "天気", class: "label font-bold" %>
-        <%= f.text_field :weather, class: "input input-bordered" %>
+      <div class="form-control mb-4">
+        <%= rt.label :course_length, "コース全長", class: "label-text" %>
+        <%= rt.number_field :course_length, step: 0.1, required: true, class: "input input-bordered" %>
       </div>
-
-      <!-- 気温 -->
-      <div class="form-control">
-        <%= f.label :temperature, "気温", class: "label font-bold" %>
-        <%= f.text_field :temperature, class: "input input-bordered" %>
-      </div>
-      
-      <!-- 大会名 -->
-      <div class="form-control">
-        <%= f.label :event_name, "大会名", class: "label font-bold" %>
-        <%= f.text_field :event_name, class: "input input-bordered" %>
-      </div>
-      
-      <!-- 会場名 -->
-      <div class="form-control">
-        <%= f.label :venue, "会場名", class: "label font-bold" %>
-        <%= f.text_field :venue, class: "input input-bordered" %>
-      </div>
-      
-      <!-- ネストされたフォーム -->
-      <h3>ラップタイム</h3>
-      <%= f.fields_for :race_times do |race_time_form| %>
-        <div class="form-control">
-          <%= race_time_form.label :rap_time, "タイム", class: "label font-bold" %>
-          <%= race_time_form.text_field :rap_time, class: "input input-bordered" %>
-        </div>
-      <% end %>
-
-      <!-- コメント -->
-      <div class="form-control">
-        <%= f.label :coment, "コメント", class: "label font-bold" %>
-        <%= f.text_area :coment, class: "input input-bordered" %>
-      </div>
-
-      <!-- 送信ボタン -->
-      <div class="form-control mt-4">
-        <%= f.submit "送信", class: "btn btn-primary" %>
-      </div>
-
     <% end %>
-  </div>
-</div>
+    
+    <h3 class="text-xl font-semibold mt-6 mb-4">マシン情報</h3>
+    <%= f.fields_for :machines do |machine| %>
+      <div class="form-control mb-4">
+        <%= machine.label :machine_name, "マシン名", class: "label-text" %>
+        <%= machine.text_field :machine_name, required: true, class: "input input-bordered" %>
+      </div>
+    
+      <div class="form-control mb-4">
+        <%= machine.label :motor, "モーター", class: "label-text" %>
+        <%= machine.select :motor, Machine.motors.keys.map { |key| [I18n.t("activerecord.attributes.machine.motor.#{key}"), key] }, {}, class: "input input-bordered" %>
+      </div>
+    
+      <div class="form-control mb-4">
+        <%= machine.label :gear_ratio, "ギア比", class: "label-text" %>
+        <%= machine.select :gear_ratio, Machine.gear_ratios.keys.map { |key| [I18n.t("activerecord.attributes.machine.gear_ratio.#{key}"), key] }, {}, class: "input input-bordered" %>
+      </div>
+    
+      <div class="form-control mb-4">
+        <%= machine.label :frame, "シャーシ", class: "label-text" %>
+        <%= machine.select :frame, Machine.frames.keys.map { |key| [I18n.t("activerecord.attributes.machine.frame.#{key}"), key] }, {}, class: "input input-bordered" %>
+      </div>
+
+
+      
+
+  
+      <div class="form-control mb-4">
+        <%= machine.label :tire_diameter, "タイヤ径", class: "label-text" %>
+        <%= machine.number_field :tire_diameter, step: 0.1, class: "input input-bordered" %>
+      </div>
+    
+      <div class="form-control mb-4">
+        <%= machine.label :tire_type, "タイヤ種", class: "label-text" %>
+        <%= machine.text_field :tire_type, class: "input input-bordered" %>
+      </div>
+
+      <div class="form-control mb-4">
+        <%= machine.label :voltage, "電圧 (V)", class: "label-text" %>
+        <%= machine.number_field :voltage, step: 0.1, class: "input input-bordered" %>
+      </div>
+
+      <div class="form-control mb-4">
+        <%= machine.label :speed, "時速 (km/h)", class: "label-text" %>
+        <%= machine.number_field :speed, step: 0.1, class: "input input-bordered" %>
+      </div>
+
+      <div class="form-control mb-4">
+        <%= machine.label :other_comments, "メモ", class: "label-text" %>
+        <%= machine.text_area :other_comments, rows: 3, class: "textarea textarea-bordered" %>
+      </div>
+
+    <h3 class="text-xl font-semibold mt-6 mb-4">コース写真</h3>
+    <%= f.fields_for :course_photos do |photo| %>
+      <div class="form-control mb-4">
+        <%= photo.label :image, "コース写真", class: "label-text" %>
+        <%= photo.file_field :image, class: "file-input file-input-bordered" %>
+      </div>
+    <% end %>
+
+    <div class="form-control mb-4">
+      <%= machine.label :body, "ボディ", class: "label-text" %>
+      <%= machine.text_area :body, class: "input input-bordered" %>
+    </div>
+    <!--
+      <!-- ギミック情報 -->
+      <% machine.fields_for :gimmicks do |gimmick_form| %>
+        <div class="form-control mb-4">
+          <%= gimmick_form.label :name, "フロントギミック", class: "label-text" %>
+          <%= gimmick_form.text_field :name, class: "input input-bordered" %>
+          <%= gimmick_form.hidden_field :gimmick_type, value: Gimmick.gimmick_types[:front] %> <!-- 必要ならtypeを指定 -->
+        </div>
+    -->
+      <% end %>      
+    <% end %>
+    
+    
+    
+    <%= f.submit "イベントを保存する", class: "btn btn-primary" %>
+  <% end %>
+  
