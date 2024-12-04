@@ -1,51 +1,48 @@
-<div class="hero bg-base-200">
+<div class="hero bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white py-20">
   <div class="hero-content text-center">
     <div class="max-w-md">
-      <h1 class="text-5xl font-bold">Mini 4WD Race Management APP</h1>
+      <p class="text-xl">レース記録を簡単に管理！楽しく活用しましょう。</p>
     </div>
   </div>
 </div>
 
-<div class="my-10 text-center">
-  <h1 class="text-2xl font-bold mb-4"></h1>
-
-  <% if user_signed_in? %>
-    <!-- ユーザーがログインしている場合 -->
-    <div class="card w-full max-w-sm shadow-lg bg-base-100 mx-auto">
-      <div class="card-body">
-        <h4 class="text-lg font-semibold">メールアドレス:</h4>
-        <p class="text-gray-600"><%= current_user.email %></p>
-        <div class="card-actions flex justify-center">
-          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-error btn-outline w-full" %>
-        </div>
-      </div>
-    </div>
-  <% else %>
-    <!-- ユーザーがログインしていない場合 -->
-    <div class="card w-full max-w-sm shadow-lg bg-base-100 mx-auto">
-      <div class="card-body">
-        <h2 class="text-lg font-semibold mb-4">現在ログインしていません</h2>
-        <div class="card-actions flex flex-col gap-2 items-center">
-          <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary w-full" %>
-          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-secondary w-full" %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
-
-<div class="flex justify-center items-center h-screen bg-base-200">
-  <div class="text-center">
+<div class="py-20 bg-base-200">
+  <div class="container mx-auto text-center">
     <h1 class="text-4xl font-bold mb-6">ようこそ！</h1>
     <p class="text-lg mb-4">レース記録を簡単に管理できます。</p>
     <div class="flex flex-col gap-4 items-center">
-      <%= link_to "レース記録を作成する", new_event_path, class: "btn btn-primary w-48" %>
-      <%= link_to "イベント結果一覧", events_path, class: "btn btn-accent w-48" %>
+      <%= link_to "レース記録を作成する", new_event_path, class: "btn btn-primary w-64 py-2 text-lg" %>
+      <%= link_to "イベント結果一覧", events_path, class: "btn btn-accent w-64 py-2 text-lg" %>
     </div>
   </div>
 </div>
 
-
-
+<div class="my-10">
+  <div class="text-center">
+    <% if user_signed_in? %>
+      <!-- ユーザーがログインしている場合 -->
+      <div class="card w-full max-w-sm mx-auto bg-white shadow-xl">
+        <div class="card-body">
+          <h4 class="text-lg font-semibold">こんにちは、<%= current_user.email %> さん！</h4>
+          <p class="text-gray-600">ログイン中です。</p>
+          <div class="card-actions flex justify-center mt-4">
+            <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-error btn-outline w-full" %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <!-- ユーザーがログインしていない場合 -->
+      <div class="card w-full max-w-sm mx-auto bg-white shadow-xl">
+        <div class="card-body">
+          <h2 class="text-lg font-semibold mb-4">現在ログインしていません</h2>
+          <div class="card-actions flex flex-col gap-2 items-center">
+            <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary w-full" %>
+            <%= link_to "新規登録", new_user_registration_path, class: "btn btn-secondary w-full" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 
