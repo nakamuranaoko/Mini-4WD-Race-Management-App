@@ -3,11 +3,11 @@
   <table class="table w-full">
     <thead>
       <tr>
-        <th>日付</th>
+        <th>Date</th>
         <th>大会名</th>
         <th>会場名</th>
-        <th>タイム</th>
-        <th>ユーザー名</th>
+        <th>Time[s]</th>
+        <th>User</th>
       </tr>
     </thead>
     <tbody>
@@ -26,7 +26,7 @@
           <td>
             <% if event.race_times.present? %>
               <% event.race_times.each do |race_time| %>
-                <div><%= number_to_human(race_time.rap_time, precision: 2) %>/s</div>
+                <div><%= number_with_precision(race_time.rap_time, precision: 2) %></div>
               <% end %>
             <% else %>
               <span class="text-gray-500">未登録</span>

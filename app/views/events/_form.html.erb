@@ -3,7 +3,7 @@
     
     <!-- イベントの日付、名前、会場、天気、気温、コメント -->
     <div class="form-control mb-4">
-      <%= f.label :date, "大会・イベント日", class: "label-text" %>
+      <%= f.label :date, "Date", class: "label-text" %>
       <%= f.date_field :date, required: true, class: "input input-bordered" %>
     </div>
     
@@ -40,7 +40,7 @@
       </div>
       <div class="form-control mb-4">
         <%= rt.label :course_length, "コース全長", class: "label-text" %>
-        <%= rt.number_field :course_length, step: 0.1, required: true, class: "input input-bordered" %>
+        <%= rt.number_field :course_length, step: 0.001, required: true, class: "input input-bordered" %>
       </div>
     <% end %>
     
@@ -72,7 +72,7 @@
   
       <div class="form-control mb-4">
         <%= machine.label :tire_diameter, "タイヤ径", class: "label-text" %>
-        <%= machine.number_field :tire_diameter, step: 0.1, class: "input input-bordered" %>
+        <%= machine.number_field :tire_diameter, step: 0.001, class: "input input-bordered" %>
       </div>
     
       <div class="form-control mb-4">
@@ -82,12 +82,12 @@
 
       <div class="form-control mb-4">
         <%= machine.label :voltage, "電圧 (V)", class: "label-text" %>
-        <%= machine.number_field :voltage, step: 0.1, class: "input input-bordered" %>
+        <%= machine.number_field :voltage, step: 0.001, class: "input input-bordered" %>
       </div>
 
       <div class="form-control mb-4">
-        <%= machine.label :speed, "時速 (km/h)", class: "label-text" %>
-        <%= machine.number_field :speed, step: 0.1, class: "input input-bordered" %>
+        <%= machine.label :speed, "時速 (km/s)", class: "label-text" %>
+        <%= machine.number_field :speed, step: 0.001, class: "input input-bordered" %>
       </div>
 
       <div class="form-control mb-4">
