@@ -12,7 +12,8 @@
 <h2 class="text-2xl font-semibold mb-4">ラップタイム</h2>
 <ul>
   <% @event.race_times.each do |time| %>
-    <li>ラップタイム: <%= time.rap_time.round(2) %> /s (コース全長: <%= time.course_length.round(2) %> m)</li>
+    <li>ラップタイム: <%= time.rap_time.round(2) %> s</li>
+    <li>コース全長: <%= time.course_length.round(2) %> m</li>
   <% end %>
 </ul>
 
@@ -25,7 +26,7 @@
     <p>シャーシ: <%= I18n.t("activerecord.attributes.machine.frame.#{machine.frame}") %></p>
     <p>タイヤ径: <%= machine.tire_diameter %> mm</p>
     <p>タイヤ種: <%= machine.tire_type %></p>
-    <p>電圧: <%= machine.voltage %> V</p>
+    <p>電圧: <%= format('%.2f', machine.voltage) %> V</p>
     <p>時速: <%= machine.speed %> km/h</p>
     <p>メモ: <%= machine.other_comments %></p>
 

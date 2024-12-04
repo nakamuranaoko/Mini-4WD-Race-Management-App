@@ -1,4 +1,3 @@
-<!-- 未ログイン状態のヘッダー -->
 <header class="bg-base-100 shadow-md">
   <div class="navbar container mx-auto">
     <!-- アプリタイトル -->
@@ -8,22 +7,38 @@
       <% end %>
     </div>
 
-    <!-- メニュー -->
+    <!-- ユーザーネームとメニュー -->
     <div class="flex-none">
-      <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-ghost">
-          メニュー
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </label>
-        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-          <li><%= link_to 'ログイン', new_user_session_path %></li>
-          <li><%= link_to '新規登録', new_user_registration_path %></li>
-          <li><%= link_to '全員のレース一覧', events_path %></li>
-          <li><%= link_to 'あなたのレース一覧', user_index_events_path %></li>
-        </ul>
-      </div>
+      <% if user_signed_in? %>
+        <span class="mr-4"><%= current_user.name %>さん</span>
+        <div class="dropdown dropdown-end">
+          <label tabindex="0" class="btn btn-ghost">
+            メニュー
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </label>
+          <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to 'あなたのレース一覧', user_index_events_path %></li>
+            <li><%= link_to '全員のレース一覧', events_path %></li>
+          </ul>
+        </div>
+      <% else %>
+        <div class="dropdown dropdown-end">
+          <label tabindex="0" class="btn btn-ghost">
+            メニュー
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </label>
+          <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+            <li><%= link_to 'ログイン', new_user_session_path %></li>
+            <li><%= link_to '新規登録', new_user_registration_path %></li>
+            <li><%= link_to '全員のレース一覧', events_path %></li>
+          </ul>
+        </div>
+      <% end %>
     </div>
   </div>
 </header>
