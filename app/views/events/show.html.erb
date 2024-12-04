@@ -2,7 +2,7 @@
 <h1 class="text-3xl font-bold mb-4"><%= @event.event_name %></h1>
 
 <div class="mb-6">
-  <p>日付: <%= @event.date %></p>
+  <p>Date: <%= @event.date %></p>
   <p>天気: <%= @event.weather %></p>
   <p>気温: <%= @event.temperature %>℃</p>
   <p>会場: <%= @event.venue %></p>
@@ -12,7 +12,7 @@
 <h2 class="text-2xl font-semibold mb-4">ラップタイム</h2>
 <ul>
   <% @event.race_times.each do |time| %>
-    <li>ラップタイム: <%= time.rap_time %> /s (コース全長: <%= time.course_length %> m)</li>
+    <li>ラップタイム: <%= time.rap_time.round(2) %> /s (コース全長: <%= time.course_length.round(2) %> m)</li>
   <% end %>
 </ul>
 
