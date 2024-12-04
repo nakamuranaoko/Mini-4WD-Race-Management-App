@@ -19,18 +19,7 @@
 
 <div class="my-10">
   <div class="text-center">
-    <% if user_signed_in? %>
-      <!-- ユーザーがログインしている場合 -->
-      <div class="card w-full max-w-sm mx-auto bg-white shadow-xl">
-        <div class="card-body">
-          <h4 class="text-lg font-semibold">こんにちは、<%= current_user.email %> さん！</h4>
-          <p class="text-gray-600">ログイン中です。</p>
-          <div class="card-actions flex justify-center mt-4">
-            <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-error btn-outline w-full" %>
-          </div>
-        </div>
-      </div>
-    <% else %>
+    <% unless user_signed_in? %>
       <!-- ユーザーがログインしていない場合 -->
       <div class="card w-full max-w-sm mx-auto bg-white shadow-xl">
         <div class="card-body">
@@ -44,5 +33,3 @@
     <% end %>
   </div>
 </div>
-
-
