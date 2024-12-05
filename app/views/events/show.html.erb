@@ -23,6 +23,7 @@
     <h3 class="text-xl font-semibold">マシン名: <%= machine.machine_name %></h3>
     <p>モーター: <%= I18n.t("activerecord.attributes.machine.motor.#{machine.motor}") %></p>
     <p>ギア比: <%= I18n.t("activerecord.attributes.machine.gear_ratio.#{machine.gear_ratio}") %></p>
+    <p>ボディ: <%= machine.body %></p>
     <p>シャーシ: <%= I18n.t("activerecord.attributes.machine.frame.#{machine.frame}") %></p>
     <p>タイヤ径: <%= machine.tire_diameter %> mm</p>
     <p>タイヤ種: <%= machine.tire_type %></p>
