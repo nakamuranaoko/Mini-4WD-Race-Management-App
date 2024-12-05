@@ -6,6 +6,7 @@ class Machine < ApplicationRecord
   has_many :mass_dampers, dependent: :destroy # マスダンパーとの関連付け
   has_many :machine_photos, dependent: :destroy # マシーン写真との関連付け
   validates :event, presence: true
+  # validates :machine_name, presence: true
 
 
   # モーターの選択肢

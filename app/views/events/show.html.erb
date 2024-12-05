@@ -26,7 +26,7 @@
     <p>シャーシ: <%= I18n.t("activerecord.attributes.machine.frame.#{machine.frame}") %></p>
     <p>タイヤ径: <%= machine.tire_diameter %> mm</p>
     <p>タイヤ種: <%= machine.tire_type %></p>
-    <p>電圧: <%= format('%.2f', machine.voltage) %> V</p>
+    <p>電圧: <%= machine.voltage.present? ? format('%.2f', machine.voltage) : '未登録' %> V</p>
     <p>時速: <%= machine.speed %> km/h</p>
     <p>メモ: <%= machine.other_comments %></p>
 
