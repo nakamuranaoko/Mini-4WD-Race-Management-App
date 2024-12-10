@@ -40,7 +40,7 @@
       </div>
       <div class="form-control mb-4">
         <%= rt.label :course_length, "コース全長", class: "label-text" %>
-        <%= rt.number_field :course_length, step: 0.001, required: true, class: "input input-bordered" %>
+        <%= rt.number_field :course_length, step: 0.001, class: "input input-bordered" %>
       </div>
     <% end %>
     
@@ -48,7 +48,7 @@
     <%= f.fields_for :machines do |machine| %>
       <div class="form-control mb-4">
         <%= machine.label :machine_name, "マシン名", class: "label-text" %>
-        <%= machine.text_field :machine_name, required: true, class: "input input-bordered" %>
+        <%= machine.text_field :machine_name, class: "input input-bordered" %>
       </div>
     
       <div class="form-control mb-4">
