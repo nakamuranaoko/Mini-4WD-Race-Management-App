@@ -74,7 +74,7 @@ class EventsController < ApplicationController
     machine.breakes.build if machine.breakes.empty?
     machine.mass_dampers.build if machine.mass_dampers.empty?
     machine.machine_photos.build if machine.machine_photos.empty?
-    @event.coruse_photos.build if @event.coruse_photos.empty?
+    @event.course_photos.build if @event.course_photos.empty?
   end
 
   # ストロングパラメーター

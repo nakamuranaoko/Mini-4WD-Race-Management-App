@@ -7,7 +7,7 @@ class Event < ApplicationRecord
 
   belongs_to :user # EventモデルがUserモデルに属している
   validates :user, presence: true # ログイン中のユーザーを自動的に関連付けられるようになる
-  has_many :coruse_photos, dependent: :destroy # コース写真との関連
+  has_many :course_photos, dependent: :destroy # コース写真との関連
   has_many :machines, dependent: :destroy # マシーンとの関連
   has_many :race_times, dependent: :destroy # レースタイムとの関連
 
