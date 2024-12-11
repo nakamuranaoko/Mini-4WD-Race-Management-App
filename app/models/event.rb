@@ -13,4 +13,5 @@ class Event < ApplicationRecord
 
   accepts_nested_attributes_for :race_times # ネストされたフォームからrace_timeを保存可能にする
   accepts_nested_attributes_for :machines
+  accepts_nested_attributes_for :course_photos, allow_destroy: true
 end

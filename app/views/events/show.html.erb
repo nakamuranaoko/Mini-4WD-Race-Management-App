@@ -21,6 +21,16 @@
   <% end%>
 </ul>
 
+<h3 class="text-xl font-semibold mt-6 mb-4">コース写真</h3>
+<div class="grid grid-cols-3 gap-4">
+  <% @event.course_photos.each do |photo| %>
+    <div class="w-full">
+      <%= image_tag photo.image_url.url, class: "rounded shadow-lg" if photo.image_url.present? %>
+    </div>
+  <% end %>
+</div>
+
+
 <h2 class="text-2xl font-semibold mt-6 mb-4">マシン情報</h2>
 <% @event.machines.each do |machine| %>
   <div class="mb-6 border p-4 rounded-lg">
