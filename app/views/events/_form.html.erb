@@ -40,7 +40,15 @@
       </div>
       <div class="form-control mb-4">
         <%= rt.label :course_length, "コース全長", class: "label-text" %>
-        <%= rt.number_field :course_length, step: 0.001, required: true, class: "input input-bordered" %>
+        <%= rt.number_field :course_length, step: 0.001, class: "input input-bordered" %>
+      </div>
+    <% end %>
+
+    <h3 class="text-xl font-semibold mt-6 mb-4">コース写真</h3>
+    <%= f.fields_for :course_photos do |photo| %>
+      <div class="form-control mb-4">
+        <%= photo.label :image_url, "コース写真", class: "label-text" %>
+        <%= photo.file_field :image_url, class: "file-input file-input-bordered" %>
       </div>
     <% end %>
     
@@ -48,7 +56,7 @@
     <%= f.fields_for :machines do |machine| %>
       <div class="form-control mb-4">
         <%= machine.label :machine_name, "マシン名", class: "label-text" %>
-        <%= machine.text_field :machine_name, required: true, class: "input input-bordered" %>
+        <%= machine.text_field :machine_name, class: "input input-bordered" %>
       </div>
     
       <div class="form-control mb-4">
@@ -94,16 +102,7 @@
         <%= machine.label :other_comments, "メモ", class: "label-text" %>
         <%= machine.text_area :other_comments, rows: 3, class: "textarea textarea-bordered" %>
       </div>
-<!--
- 
-    <h3 class="text-xl font-semibold mt-6 mb-4">コース写真</h3>
-    <%= f.fields_for :course_photos do |photo| %>
-      <div class="form-control mb-4">
-        <%= photo.label :image, "コース写真", class: "label-text" %>
-        <%= photo.file_field :image, class: "file-input file-input-bordered" %>
-      </div>
-    <% end %>
--->
+
     <div class="form-control mb-4">
       <%= machine.label :body, "ボディ", class: "label-text" %>
       <%= machine.text_area :body, class: "input input-bordered" %>
