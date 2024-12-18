@@ -58,6 +58,15 @@
         <%= machine.label :machine_name, "マシン名", class: "label-text" %>
         <%= machine.text_field :machine_name, class: "input input-bordered" %>
       </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-4">マシン写真</h3>
+      <%= machine.fields_for :machine_photos do |photo_form| %>
+        <div class="form-control mb-4">
+          <%= photo_form.label :image_url, "マシン写真", class: "label-text" %>
+          <%= photo_form.file_field :image_url, class: "file-input file-input-bordered" %>
+        </div>
+      <% end %>
+
     
       <div class="form-control mb-4">
         <%= machine.label :motor, "モーター", class: "label-text" %>
@@ -73,10 +82,6 @@
         <%= machine.label :frame, "シャーシ", class: "label-text" %>
         <%= machine.select :frame, Machine.frames.keys.map { |key| [I18n.t("activerecord.attributes.machine.frame.#{key}"), key] }, {}, class: "input input-bordered" %>
       </div>
-
-
-      
-
   
       <div class="form-control mb-4">
         <%= machine.label :tire_diameter, "タイヤ径", class: "label-text" %>
@@ -107,16 +112,7 @@
       <%= machine.label :body, "ボディ", class: "label-text" %>
       <%= machine.text_area :body, class: "input input-bordered" %>
     </div>
-    <!--
-      <!-- ギミック情報 -->
-      <% machine.fields_for :gimmicks do |gimmick_form| %>
-        <div class="form-control mb-4">
-          <%= gimmick_form.label :name, "フロントギミック", class: "label-text" %>
-          <%= gimmick_form.text_field :name, class: "input input-bordered" %>
-          <%= gimmick_form.hidden_field :gimmick_type, value: Gimmick.gimmick_types[:front] %> <!-- 必要ならtypeを指定 -->
-        </div>
-    -->
-      <% end %>      
+        
     <% end %>
     
     
