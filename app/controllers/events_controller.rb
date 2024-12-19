@@ -43,6 +43,12 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+
+    # 必要に応じて空の関連オブジェクトを追加
+    @event.course_photos.build if @event.course_photos.empty?
+    @event.machines.each do |machine|
+      machine.machine_photos.build if machine.machine_photos.empty?
+    end
   end
 
   def update
