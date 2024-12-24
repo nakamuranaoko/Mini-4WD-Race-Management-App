@@ -7,6 +7,7 @@ class Machine < ApplicationRecord
   has_many :machine_photos, dependent: :destroy # マシーン写真との関連付け
   validates :event, presence: true
   # validates :machine_name, presence: true
+  accepts_nested_attributes_for :machine_photos, allow_destroy: true
 
 
   # モーターの選択肢

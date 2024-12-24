@@ -43,6 +43,12 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+
+    # 必要に応じて空の関連オブジェクトを追加
+    @event.course_photos.build if @event.course_photos.empty?
+    @event.machines.each do |machine|
+      machine.machine_photos.build if machine.machine_photos.empty?
+    end
   end
 
   def update
@@ -74,18 +80,18 @@ class EventsController < ApplicationController
     machine.breakes.build if machine.breakes.empty?
     machine.mass_dampers.build if machine.mass_dampers.empty?
     machine.machine_photos.build if machine.machine_photos.empty?
-    @event.coruse_photos.build if @event.coruse_photos.empty?
+    @event.course_photos.build if @event.course_photos.empty?
   end
 
   # ストロングパラメーター
   def event_params
     params.require(:event).permit(
       :date, :event_name, :venue, :weather, :temperature, :coment,
-      course_photos_attributes: [ :image ],
+      course_photos_attributes: [ :id, :image_url, :_destroy ],
       race_times_attributes: [ :id, :rap_time, :course_length, :_destroy ],
       machines_attributes: [
         :id, :machine_name, :frame, :motor, :gear_ratio, :tire_diameter, :tire_type, :voltage, :speed, :other_comments, :body,
-        machine_photos_attributes: [ :id, :image, :_destroy ],
+        machine_photos_attributes: [ :id, :image_url, :_destroy ],
         gimmicks_attributes: [
           :id, :gimmick_type,
           rollers_attributes: [ :id, :position, :material, :_destroy ]

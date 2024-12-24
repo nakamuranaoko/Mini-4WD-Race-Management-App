@@ -12,10 +12,24 @@
 <h2 class="text-2xl font-semibold mb-4">ラップタイム</h2>
 <ul>
   <% @event.race_times.each do |time| %>
-    <li>ラップタイム: <%= time.rap_time.round(2) %> s</li>
-    <li>コース全長: <%= time.course_length.round(2) %> m</li>
-  <% end %>
+    <% if time.rap_time.present? %>
+      <li>ラップタイム: <%= time.rap_time.round(2) %> s</li>
+    <% end %>
+    <% if time.course_length.present? %>
+      <li>コース全長: <%= time.course_length.round(2) %> m</li>
+    <% end %>
+  <% end%>
 </ul>
+
+<h3 class="text-xl font-semibold mt-6 mb-4">コース写真</h3>
+<div class="grid grid-cols-3 gap-4">
+  <% @event.course_photos.each do |photo| %>
+    <div class="w-full">
+      <%= image_tag photo.image_url.url, class: "rounded shadow-lg" if photo.image_url.present? %>
+    </div>
+  <% end %>
+</div>
+
 
 <h2 class="text-2xl font-semibold mt-6 mb-4">マシン情報</h2>
 <% @event.machines.each do |machine| %>
@@ -27,12 +41,24 @@
     <p>シャーシ: <%= I18n.t("activerecord.attributes.machine.frame.#{machine.frame}") %></p>
     <p>タイヤ径: <%= machine.tire_diameter %> mm</p>
     <p>タイヤ種: <%= machine.tire_type %></p>
-    <p>電圧: <%= machine.voltage.present? ? format('%.2f', machine.voltage) : '未登録' %> V</p>
-    <p>時速: <%= machine.speed %> km/h</p>
-    <p>メモ: <%= machine.other_comments %></p>
+    
+    <% if @event.user == current_user %>
+      <p>電圧: <%= machine.voltage.present? ? format('%.2f', machine.voltage) : '未登録' %> V</p>
+      <p>時速: <%= machine.speed %> km/h</p>
+      <p>メモ: <%= machine.other_comments %></p>
 
+      <h4 class="text-lg font-semibold mt-4">マシン写真</h4>
+      <div class="grid grid-cols-3 gap-4">
+        <% machine.machine_photos.each do |photo| %>
+          <div class="w-full">
+            <%= image_tag photo.image_url.url, class: "rounded shadow-lg" if photo.image_url.present? %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 <% end %>
+
 
 <% if @event.user == current_user %>
   <%= link_to '編集', edit_event_path(@event), class: 'btn btn-primary' %>
