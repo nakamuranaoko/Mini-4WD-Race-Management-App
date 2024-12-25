@@ -59,6 +59,13 @@
   </div>
 <% end %>
 
+<div class="flex flex-wrap gap-2 mt-4">
+  <% @event.tags.each do |tag| %>
+    <%= link_to tag.name, events_path(tag: tag.name), class: "px-3 py-1 bg-tagBackground hover:bg-tagHover text-white rounded-full text-sm shadow" %>
+  <% end %>
+</div>
+
+
 
 <% if @event.user == current_user %>
   <%= link_to '編集', edit_event_path(@event), class: 'btn btn-primary' %>

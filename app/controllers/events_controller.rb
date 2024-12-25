@@ -13,9 +13,13 @@ class EventsController < ApplicationController
 
   # 全員レース一覧
   def index
-    @events = Event.all
-    @events = Event.includes(:user, :race_times)
+    if params[:tag].present?
+      @events = Event.joins(:tags).where("tags.name LIKE ?", "%#{params[:tag]}%").distinct
+    else
+      @events = Event.all
+      @events = Event.includes(:user, :race_times)
                  .order(date: :desc, event_name: :asc, 'race_times.rap_time': :asc)
+    end
   end
 
   # ログインユーザーだけのレース一覧
@@ -86,7 +90,7 @@ class EventsController < ApplicationController
   # ストロングパラメーター
   def event_params
     params.require(:event).permit(
-      :date, :event_name, :venue, :weather, :temperature, :coment,
+      :date, :event_name, :venue, :weather, :temperature, :coment, :tag_list,
       course_photos_attributes: [ :id, :image_url, :_destroy ],
       race_times_attributes: [ :id, :rap_time, :course_length, :_destroy ],
       machines_attributes: [

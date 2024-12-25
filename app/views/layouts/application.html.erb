@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
+  <body class="bg-gray-100 font-sans text-gray-900">
     <!-- ヘッダー -->
     <%= render 'shared/header' %>
 
     <!-- メインコンテンツ -->
-    <main>
+    <main class="container mx-auto py-6">
       <!-- タイトル -->
       <h1 class="text-center text-3xl font-bold my-4">Mini 4WD Race Management App</h1>
 

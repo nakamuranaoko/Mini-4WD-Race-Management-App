@@ -150,6 +150,11 @@
       <%= machine.label :body, "ボディ", class: "label-text" %>
       <%= machine.text_area :body, class: "input input-bordered" %>
     </div>
+
+    <div class="form-control mb-4">
+      <%= f.label :tag_list, "タグ（カンマ区切りで入力）" , class: "label-text"%>
+      <%= f.text_field :tag_list, class: "input input-bordered" %>
+    </div>
         
     <% end %>
     
