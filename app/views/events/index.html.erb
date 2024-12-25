@@ -9,14 +9,6 @@
     <% end %>
   </div>
 
-  <!-- タグ一覧 -->
-  <div class="mb-4 text-center">
-    <% Event.tag_counts.each do |tag| %>
-      <%= link_to tag.name, events_path(tag: tag.name), 
-                  class: "badge badge-outline badge-lg rounded-full px-4 py-2 hover:bg-gray-200 text-sm mr-2" %>
-    <% end %>
-  </div>
-
   <!-- 共通テンプレートの呼び出し -->
   <%= render 'event_list', events: @events %>
 </div>
