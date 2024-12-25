@@ -13,9 +13,13 @@ class EventsController < ApplicationController
 
   # 全員レース一覧
   def index
-    @events = Event.all
-    @events = Event.includes(:user, :race_times)
+    if params[:tag]
+      @events = Event.tagged_with(params[:tag])
+    else
+      @events = Event.all
+      @events = Event.includes(:user, :race_times)
                  .order(date: :desc, event_name: :asc, 'race_times.rap_time': :asc)
+    end
   end
 
   # ログインユーザーだけのレース一覧
