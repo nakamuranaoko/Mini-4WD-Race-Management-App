@@ -63,3 +63,5 @@ gem "devise"
 gem "carrierwave", "2.2.2"
 
 gem "fog-aws"
+
+gem "acts-as-taggable-on"
