@@ -13,8 +13,8 @@ class EventsController < ApplicationController
 
   # 全員レース一覧
   def index
-    if params[:tag]
-      @events = Event.tagged_with(params[:tag])
+    if params[:tag].present?
+      @events = Event.joins(:tags).where("tags.name LIKE ?", "%#{params[:tag]}%").distinct
     else
       @events = Event.all
       @events = Event.includes(:user, :race_times)
