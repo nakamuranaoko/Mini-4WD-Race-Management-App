@@ -90,7 +90,7 @@ class EventsController < ApplicationController
   # ストロングパラメーター
   def event_params
     params.require(:event).permit(
-      :date, :event_name, :venue, :weather, :temperature, :coment, :tag_list,
+      :date, :event_name, :venue, :weather, :temperature, :coment, :link, :tag_list,
       course_photos_attributes: [ :id, :image_url, :_destroy ],
       race_times_attributes: [ :id, :rap_time, :course_length, :_destroy ],
       machines_attributes: [

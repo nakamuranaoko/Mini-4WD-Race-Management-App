@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   validates :event_name, presence: true, length: { maximum: 255 } # 大会、イベント名
   validates :venue, presence: true, length: { maximum: 255 } # 店舗
   validates :coment, length: { maximum: 65_535 }
+  validates :link, format: { with: URI::DEFAULT_PARSER.make_regexp, allow_blank: true }, if: :link_present?
 
   belongs_to :user # EventモデルがUserモデルに属している
   validates :user, presence: true # ログイン中のユーザーを自動的に関連付けられるようになる
@@ -16,4 +17,16 @@ class Event < ApplicationRecord
   accepts_nested_attributes_for :course_photos, allow_destroy: true
 
   acts_as_taggable_on :tags # :tags はカスタマイズ可能,タグ機能を追加する記述
+
+  # リンクを分割して配列として返すメソッド
+  def links
+    link.present? ? link.split(",").map(&:strip) : []
+  end
+
+  private
+
+  # リンクが存在しているか確認するメソッド
+  def link_present?
+    link.present?
+  end
 end

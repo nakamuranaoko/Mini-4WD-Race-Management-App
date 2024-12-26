@@ -3,7 +3,7 @@
     
     <!-- イベントの日付、名前、会場、天気、気温、コメント -->
     <div class="form-control mb-4">
-      <%= f.label :date, "Date", class: "label-text" %>
+      <%= f.label :date, "日付", class: "label-text" %>
       <%= f.date_field :date, required: true, class: "input input-bordered" %>
     </div>
     
@@ -16,6 +16,12 @@
       <%= f.label :venue, "会場・店舗名", class: "label-text" %>
       <%= f.text_field :venue, required: true, class: "input input-bordered" %>
     </div>
+
+    <div class="form-control mb-4">
+      <%= f.label :link, "会場、イベントリンク (任意,複数のリンクはカンマで区切って入力してください)" %>
+      <%= f.text_area :link, class: "textarea textarea-bordered w-full", placeholder: "例: https://example.com, https://another.com" %>
+    </div>
+
     
     <div class="form-control mb-4">
       <%= f.label :weather, "天気", class: "label-text" %>
@@ -36,7 +42,7 @@
     <%= f.fields_for :race_times do |rt| %>
       <div class="form-control mb-4">
         <%= rt.label :rap_time, "ラップタイム", class: "label-text" %>
-        <%= rt.number_field :rap_time, step: 0.001, required: true, class: "input input-bordered" %>
+        <%= rt.number_field :rap_time, step: 0.001, class: "input input-bordered" %>
       </div>
       <div class="form-control mb-4">
         <%= rt.label :course_length, "コース全長", class: "label-text" %>
