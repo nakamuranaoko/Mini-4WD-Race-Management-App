@@ -20,7 +20,7 @@ class Event < ApplicationRecord
 
   # リンクを分割して配列として返すメソッド
   def links
-    link.present? ? link.split(',').map(&:strip) : []
+    link.present? ? link.split(",").map(&:strip) : []
   end
 
   private
