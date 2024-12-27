@@ -1,13 +1,17 @@
 <div class="container mx-auto py-4">
   <h1 class="text-2xl font-bold text-center mb-6">みんなのイベント結果一覧</h1>
 
-  <!-- タグ検索フォーム -->
+  <!-- 検索フォーム -->
   <div class="mb-6 text-center">
-    <%= form_with url: events_path, method: :get, local: true, class: "form-control w-full max-w-md mx-auto flex gap-2" do |f| %>
-      <%= f.text_field :tag, placeholder: "タグを入力", class: "input input-bordered w-full" %>
+    <%= form_with url: events_path, method: :get, local: true, class: "form-control w-full max-w-md mx-auto flex items-center gap-2" do |f| %>
+      <%= f.text_field :tag, placeholder: "タグを入力", class: "input input-bordered w-1/4" %>
+      <%= f.text_field :event_name, placeholder: "大会名を入力", class: "input input-bordered w-1/4" %>
+      <%= f.text_field :venue, placeholder: "会場名を入力", class: "input input-bordered w-1/4" %>
+      <%= f.text_field :user_name, placeholder: "ユーザー名を入力", class: "input input-bordered w-1/4" %>
       <%= f.submit "検索", class: "btn btn-primary" %>
     <% end %>
   </div>
+
 
   <!-- 共通テンプレートの呼び出し -->
   <%= render 'event_list', events: @events %>
