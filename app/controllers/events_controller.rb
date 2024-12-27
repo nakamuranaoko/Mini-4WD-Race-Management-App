@@ -16,33 +16,33 @@ class EventsController < ApplicationController
     @events = Event.includes(:user, :race_times, :tags)
 
     if params[:tag].present?
-      @events = Event.joins(:tags).where("tags.name LIKE ?", "%#{params[:tag]}%")#.distinct
-    # else
-    #   @events = Event.all
-    #   @events = Event.includes(:user, :race_times)
-    #              .order(date: :desc, event_name: :asc, 'race_times.rap_time': :asc)
+      @events = Event.joins(:tags).where("tags.name LIKE ?", "%#{params[:tag]}%")# .distinct
+      # else
+      #   @events = Event.all
+      #   @events = Event.includes(:user, :race_times)
+      #              .order(date: :desc, event_name: :asc, 'race_times.rap_time': :asc)
     end
 
     if params[:event_name].present?
       @events = @events.where("event_name LIKE ?", "%#{params[:event_name]}%")
     end
-    
+
     if params[:venue].present?
       @events = @events.where("venue LIKE ?", "%#{params[:venue]}%")
     end
-    
+
     if params[:user_name].present?
       @events = @events.joins(:user).where("users.name LIKE ?", "%#{params[:user_name]}%")
     end
-    
+
     if params[:tag].blank? && params[:event_name].blank? && params[:venue].blank? && params[:user_name].blank?
       @events = Event.includes(:user, :race_times)
                      .order(date: :desc, event_name: :asc, 'race_times.rap_time': :asc)
     else
       @events = @events.joins(:race_times, :user, :tags)
-                       .select('events.*, users.id AS user_id, users.name AS user_name, MIN(race_times.rap_time) AS min_rap_time, tags.id AS tag_id, tags.name AS tag_name')
-                       .group('events.id, users.id, users.name, race_times.id, tags.id, tags.name')
-                       .order('min_rap_time ASC')
+                       .select("events.*, users.id AS user_id, users.name AS user_name, MIN(race_times.rap_time) AS min_rap_time, tags.id AS tag_id, tags.name AS tag_name")
+                       .group("events.id, users.id, users.name, race_times.id, tags.id, tags.name")
+                       .order("min_rap_time ASC")
 
     end
   end
