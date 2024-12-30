@@ -94,6 +94,7 @@ Rails.application.configure do
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   config.hosts << "mini-4wd-race-management.com"
+  config.hosts << "mini-4wd-race-management-app-rwgn.onrender.com"
   #   "example.com",     # Allow requests from example.com
   #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
   # ]
