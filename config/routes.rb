@@ -19,4 +19,9 @@ Rails.application.routes.draw do
       get "user_index" # ログインユーザー専用のレース一覧ページ
     end
   end
+
+  get "terms", to: "static_pages#terms", as: :terms
+  get "privacy", to: "static_pages#privacy", as: :privacy
+  get "contact", to: "static_pages#contact", as: :contact
+  get "mypage", to: "users#mypage", as: :mypage
 end

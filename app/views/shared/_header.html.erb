@@ -1,9 +1,9 @@
-<header class="bg-base-100 shadow-md">
+<header class="bg-gray-500 text-white  shadow-md">
   <div class="navbar container mx-auto">
     <!-- アプリタイトル -->
     <div class="flex-1">
       <%= link_to '/', class: 'btn btn-ghost normal-case text-xl' do %>
-        M4RM 
+        MN4N 
       <% end %>
     </div>
 
@@ -18,7 +18,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </label>
-          <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+          <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 text-gray-700">
             <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
             <li><%= link_to 'あなたのレース一覧', user_index_events_path %></li>
             <li><%= link_to '全員のレース一覧', events_path %></li>
