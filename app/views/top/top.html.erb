@@ -1,7 +1,7 @@
 <div class="hero bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white py-20">
   <div class="hero-content text-center">
     <div class="max-w-md">
-      <h1 class="text-4xl font-bold mb-4">Mini 4WD Race Management App</h1>
+      <h1 class="text-4xl font-bold mb-4">MINI 4 NOTE</h1>
       <p class="text-lg">レースを記録してみよう!</p>
     </div>
   </div>
@@ -34,3 +34,14 @@
     <% end %>
   </div>
 </div>
+
+<!-- フッター追加 -->
+<footer class="text-white py-6">
+  <div class="container mx-auto text-center">
+    <ul class="flex justify-center gap-6">
+      <li><%= link_to "利用規約", terms_path, class: "text-gray-500 hover:text-white" %></li>
+      <li><%= link_to "プライバシーポリシー", privacy_path, class: "text-gray-500 hover:text-white" %></li>
+      <li><%= link_to "お問い合わせ", contact_path, class: "text-gray-500 hover:text-white" %></li>
+    </ul>
+  </div>
+</footer>
