@@ -1,7 +1,9 @@
 <div class="container mx-auto py-4">
   <h1 class="text-2xl font-bold text-center mb-6">みんなのイベント結果一覧</h1>
 
-    <!-- 検索フォーム -->
+    <!-- 共通検索フォーム呼び出し -->
+    <%= render 'search_form', search_path: events_path, show_user_name: true %>
+    <!--
     <div class="mb-6">
     <%= form_with url: events_path, method: :get, local: true, class: "form-control mx-auto" do |f| %>
         <div class="mb-6 flex">
@@ -12,6 +14,7 @@
         <%= f.submit "検索", class: "btn btn-primary" %>
         </div>
     <% end %>
+    -->
 
     </div>
 

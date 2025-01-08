@@ -7,14 +7,16 @@
         <th>大会名</th>
         <th>会場名</th>
         <th>Time[s]</th>
-        <th>User</th>
+        <% unless local_assigns[:hide_user_name] %> <!-- 条件分岐でユーザー名の列を制御 -->
+          <th>User</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
       <% @events.each do |event| %>
         <tr>
           <!-- 日付 -->
-          <td><%= event.date.strftime("%Y/%m/%d") %></td>
+          <td><%= event.date.strftime("%y/%m/%d") %></td>
             
           <!-- 大会名 -->
           <td><%= link_to event.event_name, event_path(event), class: "text-blue-500 underline" %></td>
@@ -34,7 +36,9 @@
           </td>
 
           <!-- ユーザー名 -->
-          <td><%= event.user.name %></td>
+          <% unless local_assigns[:hide_user_name] %> <!-- 条件分岐でユーザー名を制御 -->
+            <td><%= event.user.name %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
