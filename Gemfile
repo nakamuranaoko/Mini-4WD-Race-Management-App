@@ -65,3 +65,6 @@ gem "carrierwave", "2.2.2"
 gem "fog-aws"
 
 gem "acts-as-taggable-on"
+
+gem "omniauth"
+gem "omniauth-rails_csrf_protection"
