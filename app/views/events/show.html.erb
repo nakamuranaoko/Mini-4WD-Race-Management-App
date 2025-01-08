@@ -4,7 +4,7 @@
 <div class="mb-6">
   <p>Date: <%= @event.date %></p>
   <p>天気: <%= @event.weather %></p>
-  <p>気温: <%= @event.temperature %>℃</p>
+  <p>会場温度: <%= @event.temperature %>℃</p>
   <p>会場: <%= @event.venue %></p>
   <p>コメント: <%= @event.coment %></p>
 </div>
@@ -33,7 +33,7 @@
 
 <h2 class="text-2xl font-semibold mt-6 mb-4">マシン情報</h2>
 <% @event.machines.each do |machine| %>
-  <div class="mb-6 border p-4 rounded-lg">
+  <div class="mb-6 rounded-lg">
     <h3 class="text-xl font-semibold">マシン名: <%= machine.machine_name %></h3>
     <p>モーター: <%= I18n.t("activerecord.attributes.machine.motor.#{machine.motor}") %></p>
     <p>ギア比: <%= I18n.t("activerecord.attributes.machine.gear_ratio.#{machine.gear_ratio}") %></p>
@@ -61,7 +61,7 @@
 
 <div class="flex flex-wrap gap-2 mt-4">
   <% @event.tags.each do |tag| %>
-    <%= link_to tag.name, events_path(tag: tag.name), class: "px-3 py-1 bg-blue-800 hover:bg-tagHover text-white rounded-full text-sm shadow" %>
+    <%= link_to "# #{tag.name}", events_path(tag: tag.name), class: "px-3 py-1 bg-blue-800 hover:bg-tagHover text-white rounded-full text-sm shadow" %>
   <% end %>
 </div>
 

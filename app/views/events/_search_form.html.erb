@@ -1,0 +1,13 @@
+<div class="mb-6">
+  <%= form_with url: search_path, method: :get, local: true, class: "form-control mx-auto" do |f| %>
+    <div class="mb-6 flex">
+      <%= f.text_field :tag, placeholder: "タグを入力", class: "input input-bordered w-1/6 flex-1" %>
+      <%= f.text_field :event_name, placeholder: "大会名を入力", class: "input input-bordered w-1/6 flex-1" %>
+      <%= f.text_field :venue, placeholder: "会場名を入力", class: "input input-bordered w-1/6 flex-1" %>
+      <% if show_user_name %>
+        <%= f.text_field :user_name, placeholder: "ユーザー名を入力", class: "input input-bordered w-1/6 flex-1" %>
+      <% end %>
+      <%= f.submit "検索", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
