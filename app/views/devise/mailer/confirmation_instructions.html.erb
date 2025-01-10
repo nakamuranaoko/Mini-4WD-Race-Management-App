@@ -1,5 +1,7 @@
-<p>Welcome <%= @email %>!</p>
+<p><%= @resource.name %>様</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>MINI4NOTEにご登録いただきありがとうございます。</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p>以下のリンクをクリックして、メールアドレスを確認してください。</p>
+
+<p><%= link_to 'メールアドレスを確認する', confirmation_url(@resource, confirmation_token: @token) %></p>
