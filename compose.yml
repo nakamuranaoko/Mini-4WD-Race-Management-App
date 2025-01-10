@@ -1,4 +1,7 @@
 services:
+  # app:
+  #   - MAILER_SENDER=${MAILER_SENDER}
+  #   - MAILER_PASSWORD=${MAILER_PASSWORD}
   db:
     image: postgres
     restart: always
@@ -27,6 +30,8 @@ services:
       - node_modules:/myapp/node_modules
     environment:
       TZ: Asia/Tokyo
+      MAILER_SENDER: ${MAILER_SENDER}
+      MAILER_PASSWORD: ${MAILER_PASSWORD}
     ports:
       - "3000:3000"
     depends_on:
