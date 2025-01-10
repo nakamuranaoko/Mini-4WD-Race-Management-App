@@ -82,11 +82,7 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 EXPOSE 3000
 CMD ["./bin/rails", "server"]
 
-RUN apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    mkdir -p /var/lib/apt/lists/partial && \
-    apt-get update && \
-    apt-get install -y libssl-dev
-
-RUN apt-get update && apt-get install -y libssl-dev
-
+RUN apt-get update && \
+    apt-get install -y libssl-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
