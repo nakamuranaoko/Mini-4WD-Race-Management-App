@@ -84,3 +84,8 @@ CMD ["./bin/rails", "server"]
 
 RUN apt-get update && apt-get install -y libssl-dev
 
+RUN mkdir -p /var/lib/apt/lists && \
+    apt-get update && \
+    apt-get install -y libssl-dev
+
+
