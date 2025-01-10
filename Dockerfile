@@ -82,6 +82,7 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 EXPOSE 3000
 CMD ["./bin/rails", "server"]
 
+USER root
 RUN mkdir -p /var/lib/apt/lists/partial && \
     apt-get update && \
     apt-get install -y libssl-dev && \
