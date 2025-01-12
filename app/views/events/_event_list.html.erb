@@ -1,7 +1,7 @@
 <!-- イベント結果一覧 -->
 <div class="overflow-x-auto">
-  <table class="table w-full">
-    <thead>
+  <table class="table w-full ">
+    <thead class="sticky top-0 ">
       <tr>
       <th class="text-lg font-bold">Date</th>
       <th class="text-lg font-bold">大会名</th>
@@ -12,7 +12,7 @@
         <% end %>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="bg-white">
       <% @events.each do |event| %>
         <tr>
           <!-- 日付 -->

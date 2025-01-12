@@ -1,7 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= favicon_link_tag 'favicon.ico' %>
+    <%= favicon_link_tag 'MINI4NOTE.png' %>
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="<%= asset_path('MINI4NOTE.png') %>">
+
+    <!-- Open Graph (OG) Metadata -->
+    <meta property="og:title" content="MINI4NOTE">
+    <meta property="og:description" content="MINI4NOTE  〜レース記録を記録しよう〜">
+    <meta property="og:image" content="<%= asset_path('MINI4NOTE.png') %>">
+    <meta property="og:url" content="<%= root_url %>">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MINI4NOTE">
+    <meta name="twitter:description" content="MINI4NOTE  〜レース記録を記録しよう〜 #MINI4NOTE #ミニ四駆 ">
+    <meta name="twitter:image" content="<%= asset_path('MINI4NOTE.png') %>">
+
     <title></title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <%= csrf_meta_tags %>
@@ -10,7 +27,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body class="bg-gray-100 font-sans text-gray-900">
+  <body class="bg-gray-100 font-sans text-gray-900" style="padding-bottom: 80px;">
     <!-- ヘッダー -->
     <%= render 'shared/header' %>
 
@@ -22,7 +39,7 @@
       <!-- フラッシュメッセージ -->
       <div class="flash-messages mx-auto max-w-screen-md my-4">
         <% if notice.present? %>
-          <div class="alert alert-success">
+          <div class="alert alert-info">
             <p><%= notice %></p>
           </div>
         <% end %>

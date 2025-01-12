@@ -1,5 +1,5 @@
 <!-- app/views/events/show.html.erb -->
-<h1 class="text-3xl font-bold mb-4"><%= @event.event_name %></h1>
+<h1 class="text-3xl font-bold mb-4 text-gray-700"><%= @event.event_name %></h1>
 
 <div class="mb-6">
   <p>Date: <%= @event.date %></p>
@@ -61,7 +61,7 @@
 
 <div class="flex flex-wrap gap-2 mt-4">
   <% @event.tags.each do |tag| %>
-    <%= link_to "# #{tag.name}", events_path(tag: tag.name), class: "px-3 py-1 bg-blue-800 hover:bg-tagHover text-white rounded-full text-sm shadow" %>
+    <%= link_to "# #{tag.name}", events_path(tag: tag.name), class: "px-3 py-1 bg-orange-500 hover:bg-orange-300 text-white rounded-full text-sm shadow" %>
   <% end %>
 </div>
 
@@ -83,7 +83,7 @@
 
 
 <% if @event.user == current_user %>
-  <%= link_to '編集', edit_event_path(@event), class: 'btn btn-primary' %>
-  <%= link_to '削除', event_path(@event), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+  <%= link_to '編集', edit_event_path(@event), class: 'btn bg-blue-500 text-white hover:bg-blue-400 ' %>
+  <%= link_to '削除', event_path(@event), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn bg-pink-500 text-white hover:bg-pink-400' %>
 <% end %>
 <%= link_to "戻る", events_path, class: "btn btn-outline mt-6" %>
