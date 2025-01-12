@@ -22,4 +22,9 @@
         outline-offset: 0.5px; /* テキストとの間隔 */
         border-radius: 12px; /* ホバー時も丸みを維持 */
     }
+
+    body {
+      padding-top: 60px; /* ヘッダーの高さ分を追加 */
+    }
+        
 }
