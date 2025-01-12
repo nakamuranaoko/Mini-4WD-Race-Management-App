@@ -10,16 +10,16 @@
         text-transform: uppercase; /* 全て大文字 */
         letter-spacing: 0.1em; /* 字間の調整 */
         outline: 2px solid #db7093; /* アウトラインの色と幅 */
-        outline-offset: 1px; /* テキストとの間隔 */
+        outline-offset: 0.5px; /* テキストとの間隔 */
         border: none; /* デフォルトのボーダーを削除 */
         border-radius: 12px; /* 丸みを最大限にする */
-        padding: 0.5rem 1rem; /* 余白の調整 */
+        padding: 0.5rem 0.5rem; /* 余白の調整 */
     }
     
     .custom-logo:hover {
         color: #db7093; /* テキストの色 */
         outline: 2px solid #1e90ff; /* ホバー時にアウトラインを変更 */
-        outline-offset: 1px; /* テキストとの間隔 */
+        outline-offset: 0.5px; /* テキストとの間隔 */
         border-radius: 12px; /* ホバー時も丸みを維持 */
     }
 }
