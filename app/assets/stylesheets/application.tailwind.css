@@ -26,5 +26,40 @@
     body {
       padding-top: 60px; /* ヘッダーの高さ分を追加 */
     }
-        
+
+    .custom-google-in-button {
+        display: inline-block;
+        width: 250px; /* ボタンの幅 */
+        height: 50px; /* ボタンの高さ */
+        background-image: url('/assets/login@2x.png'); /* 画像のパス */
+        background-size: cover; /* 画像をボタン全体に拡大/縮小 */
+        background-repeat: no-repeat;
+        background-position: center;
+        border: none; /* ボーダーを削除 */
+        text-indent: -9999px; /* テキストを非表示 */
+        overflow: hidden; /* テキストのオーバーフローを非表示 */
+        cursor: pointer;
+    }
+
+    .custom-google-in-button:hover {
+        filter: brightness(0.9); /* ホバー時のエフェクト */
+    }
+
+    .custom-google-button {
+        display: inline-block;
+        width: 250px; /* ボタンの幅 */
+        height: 50px; /* ボタンの高さ */
+        background-image: url('/assets/web_dark_sq_SU@2x.png'); /* 画像のパス */
+        background-size: cover; /* 画像をボタン全体に拡大/縮小 */
+        background-repeat: no-repeat;
+        background-position: center;
+        border: none; /* ボーダーを削除 */
+        text-indent: -9999px; /* テキストを非表示 */
+        overflow: hidden; /* テキストのオーバーフローを非表示 */
+        cursor: pointer;
+    }
+
+    .custom-google-button:hover {
+        filter: brightness(0.9); /* ホバー時のエフェクト */
+    }
 }
