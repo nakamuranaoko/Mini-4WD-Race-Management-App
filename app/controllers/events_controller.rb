@@ -62,32 +62,19 @@ class EventsController < ApplicationController
   end
 
   def create
-    # `params[:event][:date]` の日付を取得
-    date_string = params[:event][:date]
-    begin
-      # "YYYYMMDD" を "Date" オブジェクトに変換
-      parsed_date = Date.strptime(date_string, "%Y%m%d")
-    rescue ArgumentError
-      # 日付が無効な場合の処理
-      flash[:alert] = "日付の形式が無効です。YYYYMMDD形式で入力してください。"
-      build_associations # フォームの関連データを再構築
-      render :new, status: :unprocessable_entity and return
-    end
-  
-    # 正常に変換された場合、イベントを作成
     @event = current_user.events.build(event_params)
-    @event.date = parsed_date # 変換後の日付をセット
+    Rails.logger.debug @event.inspect # デバッグ用にイベントオブジェクトを表示
   
     if @event.save
       redirect_to @event, notice: "イベントが作成されました！"
     else
-      build_associations # 保存に失敗した場合、関連データを再構築
       render :new, status: :unprocessable_entity
     end
   end
   
-
-
+  
+  
+  
 #   def create
 #     @event = current_user.events.build(event_params)
 #     Rails.logger.debug @event.inspect # デバッグ用にイベントオブジェクトを表示

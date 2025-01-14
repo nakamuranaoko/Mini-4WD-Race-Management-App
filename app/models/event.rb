@@ -14,7 +14,7 @@ class Event < ApplicationRecord
 
   accepts_nested_attributes_for :race_times # ネストされたフォームからrace_timeを保存可能にする
   accepts_nested_attributes_for :machines, allow_destroy: true
-  accepts_nested_attributes_for :course_photos, allow_destroy: true
+  accepts_nested_attributes_for :course_photos, allow_destroy: true, limit: 3
 
   acts_as_taggable_on :tags # :tags はカスタマイズ可能,タグ機能を追加する記述
 
