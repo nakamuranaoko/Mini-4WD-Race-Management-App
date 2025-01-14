@@ -34,5 +34,17 @@
     <div class="mt-4">
       <%= render "devise/shared/links" %>
     </div>
+
+    <!-- Googleログインボタンの下に追加 -->
+    <div class="divider text-gray-500 my-4">または</div>
+    <!-- Dividerにスタイルを適用可能 -->
+
+    <div class="text-center">
+      <% if devise_mapping.omniauthable? %>
+        <% resource_class.omniauth_providers.each do |provider| %>
+          <%= button_to "#{OmniAuth::Utils.camelize(provider)}でログイン", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "custom-google-in-button" %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
