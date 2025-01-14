@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, :omniauthable, omniauth_providers: [:google_oauth2]
+         :confirmable, :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
   has_many :events, dependent: :destroy # ユーザーが削除された時、Eventレコードも削除される
 
@@ -20,5 +20,4 @@ class User < ApplicationRecord
   def self.create_unique_string
     SecureRandom.uuid
   end
-
 end
