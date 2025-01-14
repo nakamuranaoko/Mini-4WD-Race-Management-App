@@ -3,9 +3,10 @@
     
     <!-- イベントの日付、名前、会場、天気、気温、コメント -->
     <div class="form-control mb-4">
-      <%= f.label :date, "日付", class: "label-text" %>
-      <%= f.date_field :date, required: true, class: "input input-bordered" %>
+      <%= f.label :date, "日付 (例: 20250114)", class: "label-text" %>
+      <%= f.text_field :date, required: true, class: "input input-bordered", placeholder: "20250114" %>
     </div>
+
     
     <div class="form-control mb-4">
       <%= f.label :event_name, "大会・イベント名", class: "label-text" %>
