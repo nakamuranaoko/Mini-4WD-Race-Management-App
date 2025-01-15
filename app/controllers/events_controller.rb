@@ -63,8 +63,7 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.events.build(event_params)
-    Rails.logger.debug @event.inspect # デバッグ用にイベントオブジェクトを表示
-  
+
     if @event.save
       redirect_to @event, notice: "イベントが作成されました！"
     else
@@ -132,7 +131,7 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(
       :date, :event_name, :venue, :weather, :temperature, :coment, :link, :tag_list,
-      course_photos_attributes: [ :id, :image_url, :_destroy ],
+      course_photos_attributes: [:id, :image_url, :_destroy ],
       race_times_attributes: [ :id, :rap_time, :course_length, :_destroy ],
       machines_attributes: [
         :id, :machine_name, :frame, :motor, :gear_ratio, :tire_diameter, :tire_type, :voltage, :speed, :other_comments, :body,
@@ -144,7 +143,27 @@ class EventsController < ApplicationController
         brakes_attributes: [ :id, :name, :color, :_destroy ],
         mass_dampers_attributes: [ :id, :name, :_destroy ]
       ]
-    )
+    ).tap do |whitelisted|
+      # Base64 画像データをファイルに変換する
+      if whitelisted[:course_photos_attributes]
+        process_base64_images(whitelisted[:course_photos_attributes])
+      end
+    
+      if whitelisted[:machines_attributes]
+        whitelisted[:machines_attributes].each do |_key, machine|
+          if machine[:machine_photos_attributes]
+            process_base64_images(machine[:machine_photos_attributes])
+          end
+          if machine[:gimmicks_attributes]
+            machine[:gimmicks_attributes].each do |_key, gimmick|
+              if gimmick[:rollers_attributes]
+                process_base64_images(gimmick[:rollers_attributes])
+              end
+            end
+          end
+        end
+      end
+    end
   end
 
   def set_event
@@ -157,4 +176,28 @@ class EventsController < ApplicationController
       redirect_to events_path
     end
   end
+end
+
+private
+
+def process_base64_images(attributes)
+  attributes.each do |_key, item|
+    if item[:image_url].present? && item[:image_url].start_with?("data:image")
+      item[:image_url] = decode_base64_image(item[:image_url])
+    end
+  end
+end
+
+def decode_base64_image(base64_string)
+  data = base64_string.split(",", 2).last
+  decoded_data = Base64.decode64(data)
+  tempfile = Tempfile.new(["upload", ".png"])
+  tempfile.binmode
+  tempfile.write(decoded_data)
+  tempfile.rewind
+  ActionDispatch::Http::UploadedFile.new(
+    tempfile: tempfile,
+    filename: "uploaded.png",
+    type: "image/png"
+  )
 end

@@ -51,30 +51,38 @@
       </div>
     <% end %>
 
-    <!-- 複数枚入力フォーム -->
+    <!-- コースフォト複数枚入力フォーム -->
     <h3 class="text-xl font-semibold mt-6 mb-4">コース写真</h3>
-    <div id="course-photos-container">
-      <%= f.fields_for :course_photos do |photo| %>
-        <div class="form-control mb-4 course-photo-fields">
-          <%= photo.label :image_url, "コース写真", class: "label-text" %>
-          <%= photo.file_field :image_url, class: "file-input file-input-bordered" %>
 
-          <% if photo.object.persisted? %>
-            <div class="mt-2">
-              <%= image_tag photo.object.image_url.url, class: "rounded shadow-lg", width: 100 %>
-              <label class="label cursor-pointer">
-                <%= photo.check_box :_destroy %>
-                <span class="label-text ml-2">この写真を削除</span>
-              </label>
-            </div>
+    <!-- 画像選択エリア -->
+    <div class="form-control mb-4">
+      <label class="label-text">画像を3枚まで選択してください</label>
+      <input type="file" id="image-selector" class="file-input file-input-bordered" multiple accept="image/*">
+      <p class="text-sm text-gray-500 mt-2">選択すると下のフォームに自動で反映されます。</p>
+    </div>
+
+    <!-- 画像プレビューと登録フォーム -->
+    <div id="image-previews" class="flex flex-wrap gap-4">
+      <% 3.times do |i| %>
+        <div class="image-preview-container" data-index="<%= i %>">
+          <!-- プレビュー用 -->
+          <div id="preview-<%= i %>" class="image-preview">
+            <p class="text-gray-500">画像が未設定です</p>
+          </div>
+          <!-- 登録用フォーム -->
+          <%= f.fields_for :course_photos, @event.course_photos.build do |photo_form| %>
+            <%= photo_form.hidden_field :image_url, id: "image-url-#{i}", class: "hidden-image-url" %>
+            <label class="label cursor-pointer mt-2">
+              <%= photo_form.check_box :_destroy, id: "destroy-#{i}", disabled: true %>
+              <span class="label-text ml-2">この写真を削除</span>
+            </label>
           <% end %>
         </div>
       <% end %>
     </div>
 
-    <div class="mt-4">
-      <button type="button" id="add-photo-btn" class="btn btn-primary">写真を追加</button>
-    </div>
+
+
     
     <h3 class="text-xl font-semibold mt-6 mb-4">マシン情報</h3>
     <%= f.fields_for :machines do |machine| %>

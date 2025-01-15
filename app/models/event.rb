@@ -14,7 +14,9 @@ class Event < ApplicationRecord
 
   accepts_nested_attributes_for :race_times # ネストされたフォームからrace_timeを保存可能にする
   accepts_nested_attributes_for :machines, allow_destroy: true
-  accepts_nested_attributes_for :course_photos, allow_destroy: true, limit: 3
+  accepts_nested_attributes_for :course_photos, allow_destroy: true
+
+  validate :course_photos_count, on: [:create, :update]
 
   acts_as_taggable_on :tags # :tags はカスタマイズ可能,タグ機能を追加する記述
 
@@ -28,5 +30,13 @@ class Event < ApplicationRecord
   # リンクが存在しているか確認するメソッド
   def link_present?
     link.present?
+  end
+
+  def course_photos_count
+    # 新しい course_photos の数を確認（削除予定のものを除外）
+    current_photos_count = course_photos.reject(&:marked_for_destruction?).size
+    if current_photos_count > 3
+      errors.add(:course_photos, "は最大3枚までです")
+    end
   end
 end
