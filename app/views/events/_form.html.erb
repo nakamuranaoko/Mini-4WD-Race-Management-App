@@ -63,22 +63,28 @@
 
     <!-- 画像プレビューと登録フォーム -->
     <div id="image-previews" class="flex flex-wrap gap-4">
-      <% 3.times do |i| %>
+        <% 3.times do |i| %>
         <div class="image-preview-container" data-index="<%= i %>">
-          <!-- プレビュー用 -->
-          <div id="preview-<%= i %>" class="image-preview">
+            <!-- プレビュー用 -->
+            <div id="preview-<%= i %>" class="image-preview">
             <p class="text-gray-500">画像が未設定です</p>
-          </div>
-          <!-- 登録用フォーム -->
-          <%= f.fields_for :course_photos, @event.course_photos.build do |photo_form| %>
+            </div>
+            <!-- 登録用フォーム -->
+            <%= f.fields_for :course_photos, @event.course_photos.build do |photo_form| %>
             <%= photo_form.hidden_field :image_url, id: "image-url-#{i}", class: "hidden-image-url" %>
             <label class="label cursor-pointer mt-2 destroy-label hidden">
-              <%= photo_form.check_box :_destroy, id: "destroy-#{i}", class: "destroy-checkbox", disabled: true %>
-              <span class="label-text ml-2">この写真を削除</span>
+                <%= photo_form.check_box :_destroy, id: "destroy-#{i}", class: "destroy-checkbox", disabled: true %>
+                <span class="label-text ml-2">この写真を削除</span>
             </label>
-          <% end %>
+            <button>追加</button>
+            <button 
+                type="button" onclick="clearHiddenField(<%= i %>)"
+            >
+                クリア
+            </button>
+            <% end %>
         </div>
-      <% end %>
+        <% end %>
     </div>
 
 

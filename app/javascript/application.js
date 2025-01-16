@@ -9,6 +9,7 @@ document.addEventListener("turbo:load", () => {
   const imageSelector = document.getElementById("image-selector");
   const previewsContainer = document.getElementById("image-previews");
 
+
   if (imageSelector) {
     imageSelector.addEventListener("change", (event) => {
       const files = event.target.files;
@@ -22,11 +23,14 @@ document.addEventListener("turbo:load", () => {
       
       const previewContainers = previewsContainer.querySelectorAll(".image-preview-container");
 
+
       [...previewContainers].forEach((container, index) => {
         const preview = container.querySelector(".image-preview");
         const hiddenField = container.querySelector(".hidden-image-url");
         const destroyCheckbox = container.querySelector(`#destroy-${index}`);
         const destroyLabel = container.querySelector(".destroy-label"); // ラベル取得
+
+        
 
         if (files[index]) {
           const file = files[index];
@@ -41,6 +45,7 @@ document.addEventListener("turbo:load", () => {
             hiddenField.value = e.target.result;
             // Hidden フィールドに Base64 エンコードされたデータを格納
             hiddenField.value = e.target.result;
+
 
             // 削除チェックボックスを有効化
             destroyCheckbox.disabled = false;
@@ -59,4 +64,9 @@ document.addEventListener("turbo:load", () => {
     });
   }
 });
+
+function clearHiddenField(i) {
+document.getElementById(`image-url-${i}`).value = '';
+}
+window.clearHiddenField = clearHiddenField;
 
