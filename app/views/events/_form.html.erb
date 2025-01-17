@@ -76,7 +76,12 @@
                 <%= photo_form.check_box :_destroy, id: "destroy-#{i}", class: "destroy-checkbox", disabled: true %>
                 <span class="label-text ml-2">この写真を削除</span>
             </label>
-            <button>追加</button>
+            <button
+                type="button" onclick="addHiddenFile(<%= i %>)"
+            >
+                追加
+            </button>
+            
             <button 
                 type="button" onclick="clearHiddenField(<%= i %>)"
             >

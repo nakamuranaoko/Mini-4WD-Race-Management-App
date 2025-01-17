@@ -64,9 +64,50 @@ document.addEventListener("turbo:load", () => {
     });
   }
 });
-
+// 写真のを削除するボタン
 function clearHiddenField(i) {
 document.getElementById(`image-url-${i}`).value = '';
-}
-window.clearHiddenField = clearHiddenField;
 
+// 該当のプレビューをリセット
+const preview = document.getElementById(`preview-${i}`);
+if (preview) {
+  preview.innerHTML = '<p class="text-gray-500">画像が未設定です</p>';
+}
+}
+window.clearHiddenField = clearHiddenField; // 写真のを削除するボタン
+
+// 写真のを追加するボタン
+function addHiddenFile(i) {
+    // `input[type="file"]` を作成
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/*";
+    fileInput.style.display = "none"; // 非表示にして、後でクリックを発火させる
+  
+    // ファイル選択時の処理
+    fileInput.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+  
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        // `image-url-${i}` に Base64 データをセット
+        const hiddenField = document.getElementById(`image-url-${i}`);
+        hiddenField.value = e.target.result;
+
+        // プレビュー画像を更新
+        const preview = document.getElementById(`preview-${i}`);
+        preview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="rounded shadow-lg" width="100">`;
+      };
+  
+      reader.readAsDataURL(file);
+    });
+  
+    // `input[type="file"]` をクリックしてファイル選択を促す
+    document.body.appendChild(fileInput);
+    fileInput.click();
+    document.body.removeChild(fileInput); // 選択後に削除
+  }
+  
+  // グローバルスコープで関数を使えるようにする
+  window.addHiddenFile = addHiddenFile;
