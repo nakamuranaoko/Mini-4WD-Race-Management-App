@@ -100,7 +100,7 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       redirect_to @event, notice: "イベントが更新されました。"
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

@@ -57,25 +57,27 @@
     <!-- 画像選択エリア -->
     <div class="form-control mb-4">
       <label class="label-text">画像を3枚まで選択してください</label>
-      <input type="file" id="image-selector" class="file-input file-input-bordered" multiple accept="image/*">
+      <!--input type="file" id="image-selector" class="file-input file-input-bordered" multiple accept="image/*" -->
+      <%= f.fields_for :course_photos do |photo_form| %>
+        <%= photo_form.file_field :image, multiple: true, class: "file-input file-input-bordered", name: "course_photos[]" %>
+      <% end %>
+      
       <p class="text-sm text-gray-500 mt-2">選択すると下のフォームに自動で反映されます。</p>
     </div>
 
     <!-- 画像プレビューと登録フォーム -->
     <div id="image-previews" class="flex flex-wrap gap-4">
-        <% 3.times do |i| %>
+        <% @event.course_photos.each_with_index do |photo,i| %>
         <div class="image-preview-container" data-index="<%= i %>">
             <!-- プレビュー用 -->
             <div id="preview-<%= i %>" class="image-preview">
             <p class="text-gray-500">画像が未設定です</p>
             </div>
             <!-- 登録用フォーム -->
-            <%= f.fields_for :course_photos, @event.course_photos.build do |photo_form| %>
+           <%= photo.image_url.present? ? image_tag(photo.image_url.url, class: "rounded shadow-lg", width: 100) : "" %>
+            <%= f.fields_for :course_photo do |photo_form| %>
             <%= photo_form.hidden_field :image_url, id: "image-url-#{i}", class: "hidden-image-url" %>
-            <label class="label cursor-pointer mt-2 destroy-label hidden">
-                <%= photo_form.check_box :_destroy, id: "destroy-#{i}", class: "destroy-checkbox", disabled: true %>
-                <span class="label-text ml-2">この写真を削除</span>
-            </label>
+            <% end %>
             <button
                 type="button" onclick="addHiddenFile(<%= i %>)"
             >
@@ -87,7 +89,7 @@
             >
                 クリア
             </button>
-            <% end %>
+            
         </div>
         <% end %>
     </div>
