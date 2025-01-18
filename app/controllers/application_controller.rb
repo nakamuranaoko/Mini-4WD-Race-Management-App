@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     cookies[:my_cookie] = {
       value: "value_here",
       secure: Rails.env.production?, # 本番環境ではHTTPSを使用
-      same_site: :none # サードパーティクッキーを許可
+      same_site: Rails.env.production? ? :none : :lax # 本番環境なら None, ローカルなら Lax
     }
   end
 
