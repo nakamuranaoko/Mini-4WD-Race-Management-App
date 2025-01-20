@@ -43,5 +43,11 @@ module ApplicationHelper
       }
     }
     set_meta_tags(configs)
+
+    puts "options[:title]: #{options[:title].inspect}"
+    puts "title before assignment: #{title}"
+
   end
+
+  
 end
