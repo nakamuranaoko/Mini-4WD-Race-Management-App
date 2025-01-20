@@ -3,12 +3,15 @@
 
 <div class="text-2xl mb-6 text-gray-600">
   <% assign_meta_tags title: @event.event_name, image: @event.course_photos.first&.image_url %>
-    <% twitter_share_url = "https://twitter.com/share?url=#{CGI.escape(event_url(@event))}" %> <!-- event_urlにしないと完全なURLにならない -->
-    <%= link_to twitter_share_url, target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
-      <!-- Xシェアボタンはfontawesome.comから使用しています -->
-      <%= image_tag 'x.svg', alt: 'Xシェアボタン', class: 'h-5 w-5' %>
-    <% end %>
+  
+  <% twitter_text = "#{@event.event_name} 結果\n#ミニ四駆 #mini4wd #MINI4NOTE" %>
+  <% twitter_share_url = "https://twitter.com/share?url=#{CGI.escape(event_url(@event))}&text=#{CGI.escape(twitter_text)}" %>
+
+  <%= link_to twitter_share_url, target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
+    <%= image_tag 'x.svg', alt: 'Xシェアボタン', class: 'h-5 w-5' %>
+  <% end %>
 </div>
+
 
 <div class="mb-6">
   <p>Date: <%= @event.date %></p>
