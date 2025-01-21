@@ -58,6 +58,11 @@ class EventsController < ApplicationController
 
 
   def show
+    if bot_request?
+      render layout: "public" # bot用の公開レイアウト（CSS適用可能）
+    else
+      authenticate_user!
+    end
     @event = Event.find(params[:id])
   end
 
@@ -144,4 +149,8 @@ class EventsController < ApplicationController
       redirect_to events_path
     end
   end
+end
+
+def bot_request?
+  request.user_agent.present? && request.user_agent.include?("Twitterbot")
 end
