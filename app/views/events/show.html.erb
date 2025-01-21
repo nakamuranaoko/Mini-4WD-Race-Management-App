@@ -1,11 +1,13 @@
 <!-- app/views/events/show.html.erb -->
 <h1 class="text-3xl font-bold mb-4 text-gray-700"><%= @event.event_name %></h1>
 
-<div class="text-2xl mb-6 text-gray-600">
+<div class="text-2xl mb-6 text-gray-600 text-center">
   <% image_url = @event.course_photos.first&.image_url %>
-  <% cache_buster = Time.now.to_i %>  <%# Unixタイムスタンプを追加 %>
+  <% cache_buster = @event.updated_at.to_i if @event.updated_at.present? %>
 
-  <% assign_meta_tags title: @event.event_name, image: "#{image_url}?v=#{cache_buster}" %>
+  <% if image_url.present? %>
+    <% assign_meta_tags title: @event.event_name, image: "#{image_url}?v=#{cache_buster}" %>
+  <% end %>
   
   <% twitter_text = "#{@event.event_name} 結果\n#ミニ四駆 #mini4wd #MINI4NOTE" %>
   <% twitter_share_url = "https://twitter.com/share?url=#{CGI.escape(event_url(@event))}&text=#{CGI.escape(twitter_text)}" %>
